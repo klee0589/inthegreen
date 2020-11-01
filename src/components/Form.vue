@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <b-form @submit="onSubmit" @reset="onReset">
+    <b-form @submit="calculate" @reset="onReset">
       <b-row>
         <b-col cols="2">
           <b-form-group
@@ -14,10 +14,10 @@
         ></b-col>
         <b-col cols="2">
           <b-form-group id="input-group-4" label="+/-">
-            <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
-              <b-form-checkbox value="+">+</b-form-checkbox>
-              <b-form-checkbox value="-">-</b-form-checkbox>
-            </b-form-checkbox-group>
+            <b-form-radio-group v-model="form.checked" id="radio-4">
+              <b-form-radio value="+">+</b-form-radio>
+              <b-form-radio value="-">-</b-form-radio>
+            </b-form-radio-group>
           </b-form-group>
         </b-col>
         <b-col cols="2">
@@ -35,18 +35,34 @@
               placeholder="ex: 300"
             ></b-form-input> </b-form-group
         ></b-col>
+        <b-col cols="2">
+          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="reset" variant="danger">Reset</b-button>
+        </b-col>
       </b-row>
-
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
+    <b-card class="mt-3" header="Winning">
+      <pre class="m-0">{{ profit }}</pre>
+    </b-card>
+    <b-card>
+      The favorite in a matchup, indicated by a minus (-) sign, will have a
+      given number of points taken away from its final score, while the
+      underdog, known by its plus (+) sign, will have the same number of points
+      added to its final score.
+    </b-card>
+    <b-card>
+      For example: Dallas –9.5 means that Dallas is the favorite and must win by
+      at least 10 points. Washington +9.5 means that Washington is the underdog
+      and has been “spotted” or “given” 9.5 points; if Washington loses by 9 or
+      fewer points, it is a winning bet (if Washington pulls an outright upset,
+      it is also a winning bet).
     </b-card>
   </b-container>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -54,7 +70,9 @@ export default {
         stake: "",
         odds: "",
         checked: []
-      }
+      },
+      profit: ""
+      // users: []
     };
   },
   methods: {
@@ -68,6 +86,22 @@ export default {
       this.form.stakes = "";
       this.form.odds = "";
       this.form.checked = [];
+      this.form.profit = "";
+    },
+    calculate(evt) {
+      evt.preventDefault();
+      const { stake, odds, checked } = this.form;
+      if (checked === "+") {
+        // Profit = (Stake * Odds) / 100
+        this.profit = new Intl.NumberFormat("en-IN", {
+          maximumSignificantDigits: 3
+        }).format((stake * odds) / 100);
+      } else {
+        // Profit = (Stake / Odds) * 100
+        this.profit = new Intl.NumberFormat("en-IN", {
+          maximumSignificantDigits: 3
+        }).format((stake / odds) * 100);
+      }
     }
   }
 };

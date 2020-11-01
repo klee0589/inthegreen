@@ -21,10 +21,14 @@ module.exports = {
     {
       files: [
         "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        "**/tests/unit/**/*.spec.{j,t}s?(x)",
+        "*.js"
       ],
       env: {
         jest: true
+      },
+      rules: {
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ]
