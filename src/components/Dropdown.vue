@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-dropdown id="dropdown-1" text="Dropdown" class="m-md-2" dropright>
-      <b-dropdown-item v-for="game of games.data" :key=game.commence_time >{{ game }}</b-dropdown-item>
+      <b-dropdown-item v-for="game of games.data" :key="game.commence_time" >{{ game }}</b-dropdown-item>
       <b-dropdown-divider></b-dropdown-divider>
     </b-dropdown>
   </div>
