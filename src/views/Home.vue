@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
-    <Board />
+    <Dropdown />
+    <!-- <Board /> -->
     <!-- <Form /> -->
   </div>
 </template>
@@ -10,11 +11,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import Form from "@/components/Form.vue"; // @ is an alias to /src
 import Board from "@/components/Board.vue"; // @ is an alias to /src
+import Dropdown from "@/components/Dropdown.vue"; // @ is an alias to /src
 
 @Component({
   components: {
     Form,
-    Board
+    Board,
+    Dropdown
   }
 })
 export default class Home extends Vue {}
