@@ -1,5 +1,7 @@
 # inthegreen
 
+## [Odds API ](https://the-odds-api.com/liveapi/guides/v3/)
+
 ## Project setup
 ```
 npm install
