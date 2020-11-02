@@ -1,11 +1,7 @@
 <template>
   <div>
-    <b-dropdown id="dropdown-1" text="Dropdown" class="m-md-2" dropright>
-      <b-dropdown-item v-for="game of games.data" :key="game.key">{{
-        game.details
-      }}</b-dropdown-item>
-      <b-dropdown-divider></b-dropdown-divider>
-    </b-dropdown>
+    <b-form-select v-model="selected" :options="gameTypes"></b-form-select>
+    {{games}}
   </div>
 </template>
 
@@ -15,22 +11,61 @@ import axios from "axios";
 export default {
   data() {
     return {
-      games: []
+      selected: null,
+      games: [],
+      gameTypes: []
     };
   },
-  beforeMount() {
+  methods: {
+    onClick() {
+      //   console.log("Clicked ", e);
+    }
+  },
+  watch: {
+    selected: function(val) {
     axios
       .get(
-        // `https://api.the-odds-api.com/v3/odds/?sport=upcoming&region=us&mkt=h2h&dateFormat=iso&apiKey=799dd1f2c9a88d205fc9307305051e73`
-        // `https://api.the-odds-api.com/v3/odds/?sport=upcoming&region=us&dateFormat=iso&oddsFormat=american&apiKey=799dd1f2c9a88d205fc9307305051e73`
-        // `&sport={sport}&region={region}&mkt={mkt}`
+        `https://api.the-odds-api.com/v3/odds/?apiKey=799dd1f2c9a88d205fc9307305051e73&sport=${this.selected}&region=us`
+      )
+      .then(response => {
+        // JSON responses are automatically parsed.
+        // this.games = response.data;
+        const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
 
-        // Get all sports
+        this.games = []
+
+        parsedobj.map(obj =>
+          this.games.push({
+            text: obj.details,
+            value: obj.key
+          })
+        );
+
+        // console.log(parsedobj.data)
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
+    }
+  },
+  mounted() {
+    axios
+      .get(
         "https://api.the-odds-api.com/v3/sports/?apiKey=799dd1f2c9a88d205fc9307305051e73"
       )
       .then(response => {
         // JSON responses are automatically parsed.
-        this.games = response.data;
+        // this.games = response.data;
+        const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
+
+        parsedobj.map(obj =>
+          this.gameTypes.push({
+            text: obj.details,
+            value: obj.key
+          })
+        );
+
+        // console.log(parsedobj.data)
       })
       .catch(e => {
         this.errors.push(e);
