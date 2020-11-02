@@ -1,51 +1,76 @@
 <template>
   <div>
     <b-form-select v-model="selected" :options="gameTypes"></b-form-select>
-    {{games}}
+    <b-table striped hover :items="games" :fields="fields"></b-table>
+    {{ games }}
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { DateTime } from "luxon";
 
 export default {
   data() {
     return {
       selected: null,
       games: [],
-      gameTypes: []
+      gameTypes: [],
+      fields: [
+        { key: "teams" },
+        { key: "sites" },
+        { key: "time", formatter: "formatDateAssigned" }
+      ]
     };
   },
   methods: {
-    onClick() {
-      //   console.log("Clicked ", e);
+    formatDateAssigned(value) {
+      const formattedDate = DateTime.fromSeconds(value);
+      console.log("here ", value);
+      console.log("here formattedDate", formattedDate);
+
+      const date = new Date(value * 1000);
+      // Hours part from the timestamp
+      const hours = date.getHours();
+      // Minutes part from the timestamp
+      const minutes = "0" + date.getMinutes();
+
+      return {
+        date,
+        hours,
+        minutes
+      };
     }
   },
   watch: {
     selected: function(val) {
-    axios
-      .get(
-        `https://api.the-odds-api.com/v3/odds/?apiKey=799dd1f2c9a88d205fc9307305051e73&sport=${this.selected}&region=us`
-      )
-      .then(response => {
-        // JSON responses are automatically parsed.
-        // this.games = response.data;
-        const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
+      axios
+        .get(
+          `https://api.the-odds-api.com/v3/odds/?apiKey=799dd1f2c9a88d205fc9307305051e73&sport=${this.selected}&dateFormat=unix&oddsFormat=american&region=us`
+        )
+        .then(response => {
+          // JSON responses are automatically parsed.
+          // this.games = response.data;
+          const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
 
-        this.games = []
+          //   console.log(parsedobj);
 
-        parsedobj.map(obj =>
-          this.games.push({
-            text: obj.details,
-            value: obj.key
-          })
-        );
+          this.games = [];
+          // this.games = parsedobj
 
-        // console.log(parsedobj.data)
-      })
-      .catch(e => {
-        this.errors.push(e);
-      });
+          parsedobj.map(obj =>
+            this.games.push({
+              teams: obj.teams,
+              time: obj.commence_time,
+              sites: obj.sites
+            })
+          );
+
+          // console.log(parsedobj.data)
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
     }
   },
   mounted() {
