@@ -43,7 +43,7 @@ export default {
     }
   },
   watch: {
-    selected: function(val) {
+    selected: function() {
       axios
         .get(
           `https://api.the-odds-api.com/v3/odds/?apiKey=799dd1f2c9a88d205fc9307305051e73&sport=${this.selected}&dateFormat=unix&oddsFormat=american&region=us`
