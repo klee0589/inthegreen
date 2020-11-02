@@ -1,7 +1,9 @@
 <template>
   <div>
     <b-dropdown id="dropdown-1" text="Dropdown" class="m-md-2" dropright>
-      <b-dropdown-item v-for="game of games.data" :key="game.key" >{{ game.details }}</b-dropdown-item>
+      <b-dropdown-item v-for="game of games.data" :key="game.key">{{
+        game.details
+      }}</b-dropdown-item>
       <b-dropdown-divider></b-dropdown-divider>
     </b-dropdown>
   </div>
@@ -24,7 +26,7 @@ export default {
         // `&sport={sport}&region={region}&mkt={mkt}`
 
         // Get all sports
-        `https://api.the-odds-api.com/v3/sports/?apiKey=799dd1f2c9a88d205fc9307305051e73`
+        "https://api.the-odds-api.com/v3/sports/?apiKey=799dd1f2c9a88d205fc9307305051e73"
       )
       .then(response => {
         // JSON responses are automatically parsed.
