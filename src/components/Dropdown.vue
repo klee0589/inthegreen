@@ -25,28 +25,20 @@ export default {
   },
   methods: {
     formatDateAssigned(value) {
-      const formattedDate = DateTime.fromSeconds(value);
-      console.log("here ", value);
-      console.log("here formattedDate", formattedDate);
-
-      const date = new Date(value * 1000);
-      // Hours part from the timestamp
-      const hours = date.getHours();
-      // Minutes part from the timestamp
-      const minutes = "0" + date.getMinutes();
-
-      return {
-        date,
-        hours,
-        minutes
-      };
+      return DateTime.fromISO(value, {zone: 'America/New_York'}).toLocaleString(DateTime.DATETIME_FULL)
     }
   },
   watch: {
     selected: function() {
+      const apiKey = "799dd1f2c9a88d205fc9307305051e73";
       axios
         .get(
-          `https://api.the-odds-api.com/v3/odds/?apiKey=799dd1f2c9a88d205fc9307305051e73&sport=${this.selected}&dateFormat=unix&oddsFormat=american&region=us`
+          `https://api.the-odds-api.com/v3/odds/?sport=${this.selected}&dateFormat=iso&oddsFormat=american&region=us`,
+          {
+            params: {
+              "api_key": apiKey
+            }
+          }
         )
         .then(response => {
           // JSON responses are automatically parsed.
