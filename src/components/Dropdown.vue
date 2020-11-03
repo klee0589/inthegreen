@@ -1,14 +1,22 @@
 <template>
   <div>
     <b-form-select v-model="selected" :options="gameTypes"></b-form-select>
-    <b-table striped hover :items="games" :fields="fields"></b-table>
-    {{ games }}
+    <!-- <b-table striped hover :items="games" :fields="fields"></b-table> -->
+    <b-container fluid class="bv-example-row">
+      <b-row>
+        <b-col cols="12" sm="3" med="3" v-for="game in games" :key="game.id">
+          <GameInfo :game="game" />
+        </b-col>
+      </b-row>
+    </b-container>
+    <!-- {{ games }} -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { DateTime } from "luxon";
+import GameInfo from './GameInfo.vue'
 
 export default {
   data() {
@@ -18,14 +26,19 @@ export default {
       gameTypes: [],
       fields: [
         { key: "teams" },
-        { key: "sites" },
-        { key: "time", formatter: "formatDateAssigned" }
+        { key: "odds", sortable: true },
+        { key: "time", formatter: "formatDateAssigned", sortable: true }
       ]
     };
   },
+  components: {
+    GameInfo
+  },
   methods: {
     formatDateAssigned(value) {
-      return DateTime.fromISO(value, {zone: 'America/New_York'}).toLocaleString(DateTime.DATETIME_FULL)
+      return DateTime.fromISO(value, {
+        zone: "America/New_York"
+      }).toLocaleString(DateTime.DATETIME_FULL);
     }
   },
   watch: {
@@ -41,24 +54,19 @@ export default {
           }
         )
         .then(response => {
-          // JSON responses are automatically parsed.
-          // this.games = response.data;
           const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
 
-          //   console.log(parsedobj);
-
           this.games = [];
-          // this.games = parsedobj
 
-          parsedobj.map(obj =>
+          parsedobj.map(obj => {
+            console.log('obj ', obj)
             this.games.push({
               teams: obj.teams,
               time: obj.commence_time,
-              sites: obj.sites
+              odds: obj.sites
             })
+          }
           );
-
-          // console.log(parsedobj.data)
         })
         .catch(e => {
           this.errors.push(e);
