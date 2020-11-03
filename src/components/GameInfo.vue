@@ -20,6 +20,9 @@ export default {
   props: ["game"],
   mounted() {
     this.teams = this.game.teams[0] + " VS " + this.game.teams[1]
+  },
+  unMounted() {
+    this.teams = ""
   }
 };
 </script>
