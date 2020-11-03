@@ -53,7 +53,7 @@ export default {
           `https://api.the-odds-api.com/v3/odds/?sport=${this.selected}&dateFormat=iso&oddsFormat=american&region=us`,
           {
             params: {
-              'api_key': apiKey
+              api_key: apiKey
             }
           }
         )
@@ -61,7 +61,7 @@ export default {
           const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
           this.games = [];
           parsedobj.map(obj => {
-            const { teams, commence_time, sites, home_team } = obj
+            const { teams, commence_time, sites, home_team } = obj;
             this.games.push({
               teams: teams,
               time: commence_time,
