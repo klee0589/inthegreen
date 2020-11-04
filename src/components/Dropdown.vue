@@ -32,7 +32,8 @@ export default {
         { key: "teams" },
         { key: "odds", sortable: true },
         { key: "time", formatter: "formatDateAssigned", sortable: true }
-      ]
+      ],
+      show: true
     };
   },
   components: {
@@ -66,7 +67,7 @@ export default {
               teams: teams[0] + " VS " + teams[1],
               time: commence_time,
               odds: sites,
-              home: home_team,
+              home: home_team
             });
           });
         })
