@@ -3,6 +3,9 @@
 ## What is In The Green?
 Think of a PokeDex for sports gamblers. Gotta win them all
 
+## Demo
+https://in-the-green-app.herokuapp.com/
+
 ## [Odds API ](https://the-odds-api.com/liveapi/guides/v3/)
 
 ## Project setup
