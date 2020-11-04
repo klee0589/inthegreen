@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <b-container fluid id="form">
     <b-form @submit="calculate" @reset="onReset">
       <b-row>
         <b-col cols="2">
@@ -104,3 +104,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+#form {
+  background-color: #88D498;
+}
+</style>

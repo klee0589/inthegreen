@@ -1,22 +1,18 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
+    <Form />
     <Dropdown />
-    <!-- <Board /> -->
-    <!-- <Form /> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Form from "@/components/Form.vue"; // @ is an alias to /src
-import Board from "@/components/Board.vue"; // @ is an alias to /src
-import Dropdown from "@/components/Dropdown.vue"; // @ is an alias to /src
+import Form from "@/components/Form.vue";
+import Dropdown from "@/components/Dropdown.vue";
 
 @Component({
   components: {
     Form,
-    Board,
     Dropdown
   }
 })
