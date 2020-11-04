@@ -1,5 +1,8 @@
 # inthegreen
 
+## What is In The Green?
+Think of a PokeDex for DeGens
+
 ## [Odds API ](https://the-odds-api.com/liveapi/guides/v3/)
 
 ## Project setup
