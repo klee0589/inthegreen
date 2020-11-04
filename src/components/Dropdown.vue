@@ -63,10 +63,10 @@ export default {
           parsedobj.map(obj => {
             const { teams, commence_time, sites, home_team } = obj;
             this.games.push({
-              teams: teams,
+              teams: teams[0] + " VS " + teams[1],
               time: commence_time,
               odds: sites,
-              home: home_team
+              home: home_team,
             });
           });
         })
