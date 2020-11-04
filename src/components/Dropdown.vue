@@ -1,5 +1,5 @@
 <template>
-  <div id="dropdown">
+  <b-container fluid>
     <b-form-select v-model="selected" :options="gameTypes"></b-form-select>
     <b-container fluid class="bv-example-row">
       <b-row>
@@ -14,7 +14,7 @@
         </b-col>
       </b-row>
     </b-container>
-  </div>
+  </b-container>
 </template>
 
 <script>

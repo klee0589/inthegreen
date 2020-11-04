@@ -1,24 +1,22 @@
 <template>
-  <div class="home">
-    <OddsCalculator />
+  <div class="sports">
+    Search Sports
+    <Dropdown />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import OddsCalculator from "@/components/OddsCalculator.vue";
 import Dropdown from "@/components/Dropdown.vue";
 
 @Component({
   components: {
-    OddsCalculator,
     Dropdown
   }
 })
-export default class Home extends Vue {}
+export default class Sports extends Vue {}
 </script>
 
 <style lang="scss">
-.home {
-}
+
 </style>
