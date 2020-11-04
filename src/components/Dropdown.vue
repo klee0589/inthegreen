@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="dropdown">
     <b-form-select v-model="selected" :options="gameTypes"></b-form-select>
     <b-container fluid class="bv-example-row">
       <b-row>
@@ -96,3 +96,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+#dropdown {
+  background-color: #114b5f;
+}
+</style>

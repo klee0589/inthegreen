@@ -22,3 +22,10 @@ import Dropdown from "@/components/Dropdown.vue"; // @ is an alias to /src
 })
 export default class Home extends Vue {}
 </script>
+
+<style lang="scss">
+.home {
+  height: 100vh;
+  background-color: #114b5f;
+}
+</style>
