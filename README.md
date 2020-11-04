@@ -1,7 +1,7 @@
 # inthegreen
 
 ## What is In The Green?
-Think of a PokeDex for DeGens
+Think of a PokeDex for sports gamblers. Gotta win them all
 
 ## [Odds API ](https://the-odds-api.com/liveapi/guides/v3/)
 
