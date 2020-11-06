@@ -2,7 +2,18 @@
   <b-container fluid id="lotto" col="6">
     <b-row>
       <b-col cols="6">
-        <b-table striped hover :items="items"></b-table>
+        <b-table striped hover :items="winningNumbers"></b-table>
+      </b-col>
+      <b-col cols="6" style="color:black">
+        Picked
+        <!-- {{ tallyWinningNumbers }} -->
+        <b-table
+          striped
+          hover
+          :items="picked"
+          :sort-by.sync="sortBy"
+          :sort-desc.sync="sortDesc"
+        ></b-table>
       </b-col>
     </b-row>
   </b-container>
@@ -16,7 +27,10 @@ import { DateTime } from "luxon";
 export default {
   data() {
     return {
-      items: []
+      sortBy: "id",
+      sortDesc: false,
+      winningNumbers: [],
+      picked: []
     };
   },
   components: {
@@ -29,49 +43,31 @@ export default {
       }).toLocaleString(DateTime.DATETIME_FULL);
     }
   },
-  watch: {
-    selected: function() {
-      const apiKey = "799dd1f2c9a88d205fc9307305051e73";
-      axios
-        .get(
-          `https://api.the-odds-api.com/v3/odds/?sport=${this.selected}&dateFormat=iso&oddsFormat=american&region=us`,
-          {
-            params: {
-              api_key: apiKey
-            }
-          }
-        )
-        .then(response => {
-          const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
-          this.games = [];
-          parsedobj.map(obj => {
-            const { teams, commence_time, sites, home_team } = obj;
-            this.games.push({
-              teams: teams[0] + " VS " + teams[1],
-              time: commence_time,
-              odds: sites,
-              home: home_team
-            });
-          });
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
-    }
-  },
   mounted() {
+    for (let i = 0; i < 69; i++) {
+      this.picked.push({ name: i });
+    }
     axios
       .get("https://data.ny.gov/resource/d6yy-54nr.json")
       .then(response => {
-        //   console.log('yooo ', response.data)
         this.items = response.data;
-        // const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
-        // parsedobj.map(obj =>
-        //   this.gameTypes.push({
-        //     text: obj.details,
-        //     value: obj.key
-        //   })
-        // );
+        const numbers = response.data;
+        numbers.map(obj => {
+          const splitNum = obj.winning_numbers.split(" ");
+          splitNum.map(number => {
+            const intNum = parseInt(number);
+            this.picked.push(intNum);
+          });
+          this.winningNumbers.push({
+            date: this.formatDateAssigned(obj.draw_date),
+            first: splitNum[0],
+            seconds: splitNum[1],
+            third: splitNum[2],
+            fourth: splitNum[3],
+            fifth: splitNum[4],
+            power: splitNum[5]
+          });
+        });
       })
       .catch(e => {
         this.errors.push(e);
@@ -83,8 +79,8 @@ export default {
 <style lang="scss">
 #lotto {
   background-color: #42b983;
-  position:relative;    
-  height:600px; 
-  overflow-y:scroll;
+  position: relative;
+  height: 600px;
+  overflow-y: scroll;
 }
 </style>
