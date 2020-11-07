@@ -6,14 +6,13 @@
       </b-col>
       <b-col cols="6" style="color:black">
         Picked
-        <!-- {{ tallyWinningNumbers }} -->
-        <b-table
-          striped
-          hover
-          :items="picked"
-          :sort-by.sync="sortBy"
-          :sort-desc.sync="sortDesc"
-        ></b-table>
+        <b-list-group>
+          <b-list-group-item
+            v-for="(pick, index) in talliedPick"
+            :key="pick + index"
+            >{{ pick.id }} | {{ pick.tally.length }}</b-list-group-item
+          >
+        </b-list-group>
       </b-col>
     </b-row>
   </b-container>
@@ -30,7 +29,8 @@ export default {
       sortBy: "id",
       sortDesc: false,
       winningNumbers: [],
-      picked: []
+      picked: [],
+      talliedPick: []
     };
   },
   components: {
@@ -43,20 +43,25 @@ export default {
       }).toLocaleString(DateTime.DATETIME_FULL);
     }
   },
-  mounted() {
-    for (let i = 0; i < 69; i++) {
-      this.picked.push({ name: i });
-    }
+  // created() {
+  //   for (let i = 1; i < 69; i++) {
+  //     this.talliedPick.push({ id: i, tally: 0 });
+  //   }
+  // },
+  created() {
     axios
       .get("https://data.ny.gov/resource/d6yy-54nr.json")
       .then(response => {
         this.items = response.data;
-        const numbers = response.data;
+        // const numbers = response.data;
+        const numbers = JSON.parse(JSON.stringify(response.data));
+        // console.log("numbers ", numbers);
         numbers.map(obj => {
           const splitNum = obj.winning_numbers.split(" ");
+
+          // const result = words.filter(word => word.length > 6)
           splitNum.map(number => {
-            const intNum = parseInt(number);
-            this.picked.push(intNum);
+            this.picked.push(number);
           });
           this.winningNumbers.push({
             date: this.formatDateAssigned(obj.draw_date),
@@ -68,6 +73,12 @@ export default {
             power: splitNum[5]
           });
         });
+        for (let i = 1; i < 69; i++) {
+          const { picked } = this;
+          const groupedPicks = picked.filter(pick => parseInt(pick) === i);
+          console.log('grouped ', groupedPicks)
+          this.talliedPick.push({ id: i, tally: groupedPicks });
+        }
       })
       .catch(e => {
         this.errors.push(e);
