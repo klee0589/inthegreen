@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <b-container fluid id="form">
     <OddsCalculator />
-  </div>
+  </b-container>
 </template>
 
 <script lang="ts">
@@ -19,6 +19,4 @@ export default class Home extends Vue {}
 </script>
 
 <style lang="scss">
-.home {
-}
 </style>

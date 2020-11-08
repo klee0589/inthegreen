@@ -1,5 +1,5 @@
 <template>
-  <b-card :title="game.teams" :sub-title="game.time">
+  <b-card :title="game.teams" :sub-title="game.time" id="gameInfoContainer">
     <b-card-text>
       <ul>
         <li v-for="(odd, index) in game.odds" :key="index">
@@ -14,7 +14,11 @@
 export default {
   data() {
     return {
-      teams: ""
+      teams: "",
+      fields: [
+        "site_nice",
+        "odds"
+      ]
     };
   },
   props: ["game"],
@@ -23,3 +27,13 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+#gameInfoContainer {
+  // background:lightgray;
+  border: 1px solid #42b983;
+  border-radius: 0;
+  margin: 5px;
+  height: 100%;
+}
+</style>

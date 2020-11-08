@@ -1,12 +1,12 @@
 <template>
-  <b-container fluid>
+  <div>
     <b-form-select v-model="selected" :options="gameTypes"></b-form-select>
-    <b-container fluid class="bv-example-row">
+    <b-container fluid class="bv-example-row" id="gamesListContainer">
       <b-row>
         <b-col
           cols="12"
-          sm="3"
-          med="3"
+          sm="4"
+          med="4"
           v-for="game in games"
           :key="game.home_team"
         >
@@ -14,7 +14,7 @@
         </b-col>
       </b-row>
     </b-container>
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -65,7 +65,9 @@ export default {
             const { teams, commence_time, sites, home_team } = obj;
             this.games.push({
               teams: teams[0] + " VS " + teams[1],
-              time: commence_time,
+              time: DateTime.fromISO(commence_time, {
+                zone: "America/New_York"
+              }).toLocaleString(DateTime.DATETIME_FULL),
               odds: sites,
               home: home_team
             });
@@ -99,6 +101,10 @@ export default {
 
 <style lang="scss">
 #dropdown {
+  background-color: #114b5f;
+}
+#gamesListContainer {
+  padding: 20px 20px;
   background-color: #114b5f;
 }
 </style>
