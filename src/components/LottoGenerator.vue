@@ -11,6 +11,7 @@
           :items="generatedLottoNumbers"
           :fields="fields"
           :sort-desc="sortDesc"
+          :sort-by="number"
         ></b-table>
       </b-col>
       <b-col cols="6" style="color:black">
@@ -20,6 +21,7 @@
           :items="generatedLottoFinalNumber"
           :fields="fields"
           :sort-desc="sortDesc"
+          :sort-by="number"
         ></b-table>
       </b-col>
       <!-- <b-col cols="6">
@@ -47,7 +49,7 @@ export default {
   data() {
     return {
       sortBy: "id",
-      sortDesc: false,
+      sortDesc: true,
       winningNumbers: [],
       picked: [],
       talliedPick: [],
@@ -69,20 +71,26 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = [];
+
       for (let i = 0; i <= 4; i++) {
-        const randomElement = this.picked[
+        let randomElement = this.picked[
           Math.floor(Math.random() * this.picked.length)
         ];
+        if (numberCollection.indexOf(randomElement) === -1) {
+          randomElement = this.picked[
+            Math.floor(Math.random() * this.picked.length)
+          ];
+        }
         numberCollection.push({ number: parseInt(randomElement) });
       }
 
-      const randomPowerBallNumbers = [{
-        number: this.winningNumbers[
-          Math.floor(Math.random() * this.winningNumbers.length)
-        ].power
-      }];
-
-      // console.log("powerBallNumbers ", powerBallNumbers);
+      const randomPowerBallNumbers = [
+        {
+          number: this.winningNumbers[
+            Math.floor(Math.random() * this.winningNumbers.length)
+          ].power
+        }
+      ];
 
       this.generatedLottoNumbers = numberCollection;
       this.generatedLottoFinalNumber = randomPowerBallNumbers;
