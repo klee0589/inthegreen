@@ -5,7 +5,22 @@
         <b-button variant="success" @click="generateLottoNumbers"
           >Generate Lotto</b-button
         >
-        {{ generatedLottoNumbers }}
+        <b-table
+          striped
+          hover
+          :items="generatedLottoNumbers"
+          :fields="fields"
+          :sort-desc="sortDesc"
+        ></b-table>
+      </b-col>
+      <b-col cols="6" style="color:black">
+        <b-table
+          striped
+          hover
+          :items="generatedLottoFinalNumber"
+          :fields="fields"
+          :sort-desc="sortDesc"
+        ></b-table>
       </b-col>
       <!-- <b-col cols="6">
         <b-table striped hover :items="winningNumbers"></b-table>
@@ -36,7 +51,14 @@ export default {
       winningNumbers: [],
       picked: [],
       talliedPick: [],
-      generatedLottoNumbers: null
+      generatedLottoNumbers: null,
+      generatedLottoFinalNumber: null,
+      fields: [
+        {
+          key: "number",
+          sortable: true
+        }
+      ]
     };
   },
   methods: {
@@ -47,14 +69,23 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = [];
-        for (let i = 0; i <= 4; i++) {
-          const randomElement = this.picked[
-            Math.floor(Math.random() * this.picked.length)
-          ];
-          numberCollection.push(randomElement);
-        }
+      for (let i = 0; i <= 4; i++) {
+        const randomElement = this.picked[
+          Math.floor(Math.random() * this.picked.length)
+        ];
+        numberCollection.push({ number: parseInt(randomElement) });
+      }
+
+      const randomPowerBallNumbers = [{
+        number: this.winningNumbers[
+          Math.floor(Math.random() * this.winningNumbers.length)
+        ].power
+      }];
+
+      // console.log("powerBallNumbers ", powerBallNumbers);
 
       this.generatedLottoNumbers = numberCollection;
+      this.generatedLottoFinalNumber = randomPowerBallNumbers;
     }
   },
   created() {
