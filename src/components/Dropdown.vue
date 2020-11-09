@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-form-select v-model="selected" :options="gameTypes"></b-form-select>
+    <b-form-select v-model="selected" :options="links"></b-form-select>
     <b-container fluid class="bv-example-row" id="gamesListContainer">
       <b-row>
         <b-col
           cols="12"
-          sm="4"
-          med="4"
+          sm="3"
+          med="3"
           v-for="game in games"
           :key="game.home_team"
         >
@@ -33,7 +33,13 @@ export default {
         { key: "odds", sortable: true },
         { key: "time", formatter: "formatDateAssigned", sortable: true }
       ],
-      show: true
+      links: [
+        { text: "NFL", value: "americanfootball_nfl" },
+        { text: "EPL", value: "soccer_epl" },
+        { text: "BUNDASLIGA", value: "soccer_germany_bundesliga" },
+        { text: "CHAMPIONS", value: "soccer_uefa_champs_league" },
+        { text: "BUNDASLIGA", value: "soccer_germany_bundesliga" }
+      ]
     };
   },
   components: {
@@ -78,7 +84,7 @@ export default {
         });
     }
   },
-  mounted() {
+  beforeCreate() {
     axios
       .get(
         "https://api.the-odds-api.com/v3/sports/?apiKey=799dd1f2c9a88d205fc9307305051e73"

@@ -3,7 +3,7 @@
     <b-card-text>
       <ul>
         <li v-for="(odd, index) in game.odds" :key="index">
-          {{ odd.site_nice }} | {{ odd.odds.h2h }}
+          {{ odd.site_nice }} | {{ odd.odds.h2h[0] }} | {{ odd.odds.h2h[1] }} | {{ odd.odds.h2h[2] }}
         </li>
       </ul>
     </b-card-text>
@@ -35,5 +35,9 @@ export default {
   border-radius: 0;
   margin: 5px;
   height: 100%;
+}
+
+ul {
+  padding: 0;
 }
 </style>
