@@ -3,7 +3,7 @@
     <b-card-text>
       <ul>
         <li v-for="(odd, index) in game.odds" :key="index">
-          {{ odd.site_nice }} | {{ odd.odds.h2h[0] }} | {{ odd.odds.h2h[1] }} | {{ odd.odds.h2h[2] }}
+          {{ odd.site_nice }} | {{ game.home }} {{ odd.odds.h2h[0] }} | {{ odd.odds.h2h[1] }} | {{ odd.odds.h2h[2] }} {{ game.away }}
         </li>
       </ul>
     </b-card-text>

@@ -5,8 +5,8 @@
       <b-row>
         <b-col
           cols="12"
-          sm="3"
-          med="3"
+          sm="6"
+          med="6"
           v-for="game in games"
           :key="game.home_team"
         >
@@ -34,11 +34,10 @@ export default {
         { key: "time", formatter: "formatDateAssigned", sortable: true }
       ],
       links: [
-        { text: "NFL", value: "americanfootball_nfl" },
+        // { text: "NFL", value: "americanfootball_nfl" },
         { text: "EPL", value: "soccer_epl" },
         { text: "BUNDASLIGA", value: "soccer_germany_bundesliga" },
-        { text: "CHAMPIONS", value: "soccer_uefa_champs_league" },
-        { text: "BUNDASLIGA", value: "soccer_germany_bundesliga" }
+        { text: "CHAMPIONS", value: "soccer_uefa_champs_league" }
       ]
     };
   },
@@ -71,11 +70,12 @@ export default {
             const { teams, commence_time, sites, home_team } = obj;
             this.games.push({
               teams: teams[0] + " VS " + teams[1],
+              home: teams[0],
+              away: teams[1],
               time: DateTime.fromISO(commence_time, {
                 zone: "America/New_York"
               }).toLocaleString(DateTime.DATETIME_FULL),
-              odds: sites,
-              home: home_team
+              odds: sites
             });
           });
         })
