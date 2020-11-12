@@ -6,7 +6,7 @@
       <router-link to="/lotto">Lotto</router-link>
     </div>
     <div class="timeContainer">
-    {{ time | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}
+      {{ time | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}
     </div>
     <router-view />
   </div>
@@ -23,7 +23,7 @@ export default {
   },
   created() {
     this.displayTime();
-    setTimeout(() => {
+    setInterval(() => {
       this.displayTime();
     }, 20000);
   },
