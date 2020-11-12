@@ -3,7 +3,8 @@
     <b-card-text>
       <ul>
         <li v-for="(odd, index) in game.odds" :key="index">
-          {{ odd.site_nice }} | {{ game.home }} {{ odd.odds.h2h[0] }} | {{ odd.odds.h2h[1] }} | {{ odd.odds.h2h[2] }} {{ game.away }}
+          {{ odd.site_nice }} | {{ game.home }} {{ odd.odds.h2h[0] }} |
+          {{ odd.odds.h2h[1] }} | {{ odd.odds.h2h[2] }} {{ game.away }}
         </li>
       </ul>
     </b-card-text>
@@ -15,22 +16,19 @@ export default {
   data() {
     return {
       teams: "",
-      fields: [
-        "site_nice",
-        "odds"
-      ]
+      fields: ["site_nice", "odds"],
     };
   },
   props: ["game"],
-  mounted() {
+  created() {
     this.teams = this.game.teams[0] + " VS " + this.game.teams[1];
-  }
+  },
 };
 </script>
 
 <style lang="scss">
 #gameInfoContainer {
-  // background:lightgray;
+  background: lightgray;
   border: 1px solid #42b983;
   border-radius: 0;
   margin: 5px;

@@ -2,6 +2,12 @@
   <div>
     <b-form-select v-model="selected" :options="links"></b-form-select>
     <b-container fluid class="bv-example-row" id="gamesListContainer">
+      <b-spinner
+        variant="success"
+        type="grow"
+        label="Spinning"
+        v-if="isLoading"
+      ></b-spinner>
       <b-row>
         <b-col
           cols="12"
@@ -10,7 +16,7 @@
           v-for="game in games"
           :key="game.home_team"
         >
-          <GameInfo :game="game" />
+          <GameInfo :game="game" :isLoading="isLoading" />
         </b-col>
       </b-row>
     </b-container>
@@ -28,80 +34,90 @@ export default {
       selected: null,
       games: [],
       gameTypes: [],
+      isLoading: false,
       fields: [
         { key: "teams" },
         { key: "odds", sortable: true },
-        { key: "time", formatter: "formatDateAssigned", sortable: true }
+        { key: "time", formatter: "formatDateAssigned", sortable: true },
       ],
       links: [
-        // { text: "NFL", value: "americanfootball_nfl" },
+        { text: "NFL", value: "americanfootball_nfl" },
         { text: "EPL", value: "soccer_epl" },
         { text: "BUNDASLIGA", value: "soccer_germany_bundesliga" },
-        { text: "CHAMPIONS", value: "soccer_uefa_champs_league" }
-      ]
+        { text: "CHAMPIONS", value: "soccer_uefa_champs_league" },
+      ],
     };
   },
   components: {
-    GameInfo
+    GameInfo,
   },
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
-        zone: "America/New_York"
+        zone: "America/New_York",
       }).toLocaleString(DateTime.DATETIME_FULL);
-    }
+    },
+    async getSports() {
+      this.isLoading = true;
+      await axios
+        .get(
+          "https://api.the-odds-api.com/v3/sports/?apiKey=799dd1f2c9a88d205fc9307305051e73"
+        )
+        .then((response) => {
+          const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
+          parsedobj.map((obj) =>
+            this.gameTypes.push({
+              text: obj.details,
+              value: obj.key,
+            })
+          );
+          this.isLoading = false;
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
   },
   watch: {
-    selected: function() {
+    selected: function () {
       const apiKey = "799dd1f2c9a88d205fc9307305051e73";
+      this.isLoading = true;
+      this.games = [];
       axios
         .get(
           `https://api.the-odds-api.com/v3/odds/?sport=${this.selected}&dateFormat=iso&oddsFormat=american&region=us`,
           {
             params: {
-              api_key: apiKey
-            }
+              api_key: apiKey,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
           this.games = [];
-          parsedobj.map(obj => {
+          parsedobj.map((obj) => {
             const { teams, commence_time, sites, home_team } = obj;
             this.games.push({
               teams: teams[0] + " VS " + teams[1],
               home: teams[0],
               away: teams[1],
               time: DateTime.fromISO(commence_time, {
-                zone: "America/New_York"
+                zone: "America/New_York",
               }).toLocaleString(DateTime.DATETIME_FULL),
-              odds: sites
+              odds: sites,
             });
           });
+          this.isLoading = false;
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e);
         });
-    }
+    },
   },
-  beforeCreate() {
-    axios
-      .get(
-        "https://api.the-odds-api.com/v3/sports/?apiKey=799dd1f2c9a88d205fc9307305051e73"
-      )
-      .then(response => {
-        const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
-        parsedobj.map(obj =>
-          this.gameTypes.push({
-            text: obj.details,
-            value: obj.key
-          })
-        );
-      })
-      .catch(e => {
-        this.errors.push(e);
-      });
-  }
+  created() {
+    this.isLoaded = false;
+    this.getSports();
+  },
 };
 </script>
 
