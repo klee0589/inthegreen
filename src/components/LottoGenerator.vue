@@ -24,7 +24,7 @@
           :sort-by="number"
         ></b-table>
       </b-col>
-      <!-- <b-col cols="6">
+      <b-col cols="6">
         <b-table striped hover :items="winningNumbers"></b-table>
       </b-col>
       <b-col cols="6" style="color:black">
@@ -35,8 +35,8 @@
             :key="pick + index"
             >{{ pick.id }} | {{ pick.tally }}</b-list-group-item
           >
-        </b-list-group> -->
-      <!-- </b-col> -->
+        </b-list-group> 
+      </b-col>
     </b-row>
   </b-container>
 </template>
@@ -67,7 +67,7 @@ export default {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
         zone: "America/New_York"
-      }).toLocaleString(DateTime.DATETIME_FULL);
+      }).toLocaleString(DateTime);
     },
     generateLottoNumbers() {
       const numberCollection = [];
@@ -135,7 +135,7 @@ export default {
 #lotto {
   background-color: #42b983;
   position: relative;
-  height: 600px;
+  height: 100vh;
   overflow-y: scroll;
 }
 </style>

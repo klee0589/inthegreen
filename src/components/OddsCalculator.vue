@@ -2,7 +2,7 @@
   <b-container fluid id="form">
     <b-form @submit="calculate" @reset="onReset">
       <b-row>
-        <b-col cols="2">
+        <b-col cols="4">
           <b-form-group
             id="input-group-1"
             label="Stake:"
@@ -35,7 +35,7 @@
               placeholder="ex: 300"
             ></b-form-input> </b-form-group
         ></b-col>
-        <b-col cols="2">
+        <b-col cols="4">
           <b-button type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </b-col>
