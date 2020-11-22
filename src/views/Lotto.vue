@@ -1,6 +1,5 @@
 <template>
   <div class="lotto">
-    <img :src="'../assets/img/rules.png'" />
     <LottoGenerator />
   </div>
 </template>
