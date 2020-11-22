@@ -1,7 +1,7 @@
 <template>
   <b-container fluid id="lotto" col="6">
     <b-row>
-      <b-col cols="6" style="color:black">
+      <b-col cols="6" style="color: black">
         <b-button variant="success" @click="generateLottoNumbers"
           >Generate Lotto</b-button
         >
@@ -14,7 +14,7 @@
           :sort-by="number"
         ></b-table>
       </b-col>
-      <b-col cols="6" style="color:black">
+      <b-col cols="6" style="color: black">
         <b-table
           striped
           hover
@@ -27,15 +27,19 @@
       <b-col cols="6">
         <b-table striped hover :items="winningNumbers"></b-table>
       </b-col>
-      <b-col cols="6" style="color:black">
+      <b-col cols="6" style="color: black">
         Picked
-        <b-list-group>
-          <b-list-group-item
-            v-for="(pick, index) in talliedPick"
-            :key="pick + index"
-            >{{ pick.id }} | {{ pick.tally }}</b-list-group-item
-          >
-        </b-list-group> 
+        <ul>
+          <li v-for="(pick, index) in talliedPick" :key="pick + index">
+            {{ pick.id }} | {{ pick.tally }}
+            <b-progress
+              :value="pick.tally"
+              :max="winningNumbers.length"
+              show-progress
+              animated
+            ></b-progress>
+          </li>
+        </ul>
       </b-col>
     </b-row>
   </b-container>
@@ -58,15 +62,15 @@ export default {
       fields: [
         {
           key: "number",
-          sortable: true
-        }
-      ]
+          sortable: true,
+        },
+      ],
     };
   },
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
-        zone: "America/New_York"
+        zone: "America/New_York",
       }).toLocaleString(DateTime);
     },
     generateLottoNumbers() {
@@ -88,23 +92,23 @@ export default {
         {
           number: this.winningNumbers[
             Math.floor(Math.random() * this.winningNumbers.length)
-          ].power
-        }
+          ].power,
+        },
       ];
 
       this.generatedLottoNumbers = numberCollection;
       this.generatedLottoFinalNumber = randomPowerBallNumbers;
-    }
+    },
   },
   created() {
     axios
       .get("https://data.ny.gov/resource/d6yy-54nr.json")
-      .then(response => {
+      .then((response) => {
         this.items = response.data;
         const numbers = JSON.parse(JSON.stringify(response.data));
-        numbers.map(obj => {
+        numbers.map((obj) => {
           const splitNum = obj.winning_numbers.split(" ");
-          splitNum.map(number => {
+          splitNum.map((number) => {
             this.picked.push(number);
           });
           this.winningNumbers.push({
@@ -114,20 +118,20 @@ export default {
             third: parseInt(splitNum[2]),
             fourth: parseInt(splitNum[3]),
             fifth: parseInt(splitNum[4]),
-            power: parseInt(splitNum[5])
+            power: parseInt(splitNum[5]),
           });
         });
-        for (let i = 1; i < 69; i++) {
+        for (let i = 1; i < 70; i++) {
           const { picked } = this;
-          const groupedPicks = picked.filter(pick => parseInt(pick) === i)
+          const groupedPicks = picked.filter((pick) => parseInt(pick) === i)
             .length;
           this.talliedPick.push({ id: i, tally: groupedPicks });
         }
       })
-      .catch(e => {
+      .catch((e) => {
         this.errors.push(e);
       });
-  }
+  },
 };
 </script>
 
