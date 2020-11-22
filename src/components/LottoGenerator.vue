@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid id="lotto" col="6">
+  <b-container fluid id="lotto" col="12">
     <b-row>
       <b-col cols="6" style="color: black">
         <b-button variant="success" @click="generateLottoNumbers"

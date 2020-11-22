@@ -44,6 +44,7 @@ export default {
   color: #42b983;
   background-color: #114B5F;
   height: 100vh;
+  font-family: 'Graduate', cursive;
 }
 
 #nav {
