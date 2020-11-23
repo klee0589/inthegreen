@@ -1,5 +1,6 @@
 <template>
   <div class="sports">
+    <ScoreBoard />
     Search Sports
     <Dropdown />
   </div>
@@ -8,10 +9,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Dropdown from "@/components/Dropdown.vue";
+import ScoreBoard from "@/components/ScoreBoard.vue";
 
 @Component({
   components: {
-    Dropdown
+    Dropdown,
+    ScoreBoard
   }
 })
 export default class Sports extends Vue {}
