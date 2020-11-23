@@ -18,5 +18,4 @@ import Dropdown from "@/components/Dropdown.vue";
 export default class Home extends Vue {}
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

@@ -18,6 +18,4 @@ import LottoGenerator from "@/components/LottoGenerator.vue";
 export default class Lotto extends Vue {}
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

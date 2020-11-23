@@ -107,6 +107,6 @@ export default {
 
 <style lang="scss">
 #form {
-  background-color: #F3E9D2;
+  background-color: #f3e9d2;
 }
 </style>

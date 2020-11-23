@@ -3,7 +3,7 @@
     <b-card-text>
       <b-row>
         <b-col>
-          {{ "SOURCES"}}
+          {{ "SOURCES" }}
         </b-col>
         <b-col>
           {{ game.home }}
@@ -42,19 +42,19 @@ export default {
   data() {
     return {
       teams: "",
-      fields: ["site_nice", "odds"],
+      fields: ["site_nice", "odds"]
     };
   },
   props: ["game"],
   created() {
     this.teams = this.game.teams[0] + " VS " + this.game.teams[1];
-  },
+  }
 };
 </script>
 
 <style lang="scss">
 #gameInfoContainer {
-  background:#114B5F;;
+  background: #114b5f;
   border: 1px solid #42b983;
   border-radius: 0;
   margin: 5px;

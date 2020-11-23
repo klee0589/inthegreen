@@ -2,7 +2,9 @@
   <div class="scoreboard">
     <div class="scoreboard__container">
       <div class="scoreboard__basics mb-05">
-        <span class="label"> {{ game.competitions[0].status.type.description }} </span>
+        <span class="label">
+          {{ game.competitions[0].status.type.description }}
+        </span>
         <span class="text-danger">
           {{ game.competitions[0].status.displayClock }}
         </span>
@@ -36,7 +38,7 @@
 
 <script>
 export default {
-  props: ["game"],
+  props: ["game"]
 };
 </script>
 

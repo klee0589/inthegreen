@@ -18,7 +18,7 @@ import { DateTime } from "luxon";
 export default {
   data() {
     return {
-      time: "",
+      time: ""
     };
   },
   created() {
@@ -30,8 +30,8 @@ export default {
   methods: {
     displayTime() {
       this.time = DateTime.local().toLocaleString(DateTime.DATETIME_SHORT);
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -42,9 +42,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #42b983;
-  background-color: #114B5F;
+  background-color: #114b5f;
   height: 100vh;
-  font-family: 'Graduate', cursive;
+  font-family: "Graduate", cursive;
 }
 
 #nav {

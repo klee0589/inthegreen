@@ -1,8 +1,8 @@
 <template>
   <div class="sports">
-    <ScoreBoard />
     Search Sports
     <Dropdown />
+    <ScoreBoard />
   </div>
 </template>
 
@@ -20,6 +20,4 @@ import ScoreBoard from "@/components/ScoreBoard.vue";
 export default class Sports extends Vue {}
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
