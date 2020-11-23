@@ -24,7 +24,7 @@ export default {
     return {
       games: "",
       isLoading: false,
-      sport: this.$store.state,
+      sport: "http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
     };
   },
   beforeMount() {
