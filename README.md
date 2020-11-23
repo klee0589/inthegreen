@@ -8,6 +8,7 @@ Think of a PokeDex for sports gamblers. Gotta win them all
 ## [Odds API ](https://the-odds-api.com/liveapi/guides/v3/)
 
 ## [ESPN API](https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b)
+### [ESPN API HELPER](https://www.espn.com/apis/devcenter/io-docs.html)
 
 ## Project setup
 ```

@@ -23,32 +23,31 @@ export default {
   data() {
     return {
       games: "",
-      isLoading: false
+      isLoading: false,
+      sport: this.$store.state,
     };
   },
   beforeMount() {
     this.getSports();
   },
   components: {
-    ScoreBoardSlot
+    ScoreBoardSlot,
   },
   methods: {
     async getSports() {
       this.isLoading = true;
       await axios
-        .get(
-          "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
-        )
-        .then(response => {
+        .get(this.sport)
+        .then((response) => {
           // console.log("here ", response);
           this.games = response.data.events;
           this.isLoading = false;
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

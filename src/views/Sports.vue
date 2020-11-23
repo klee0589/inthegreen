@@ -1,8 +1,8 @@
 <template>
   <div class="sports">
+    <ScoreBoard />
     Search Sports
     <Dropdown />
-    <ScoreBoard />
   </div>
 </template>
 
