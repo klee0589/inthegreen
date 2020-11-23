@@ -71,10 +71,10 @@ $primaryColor: $blue;
   color: $red;
 }
 .label {
-  font-size: 9px;
+  font-size: 6px;
   text-transform: uppercase;
   color: $secondaryTextColor;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.095em;
   margin-bottom: $space-size / 2;
 }

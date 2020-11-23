@@ -1,14 +1,7 @@
 <template>
   <div id="scoreboard_container">
-    SCOREBOARD
-    <b-spinner
-      variant="success"
-      type="grow"
-      label="Spinning"
-      v-if="isLoading"
-    ></b-spinner>
     <b-row>
-      <b-col v-for="game in games" :key="game.id">
+      <b-col v-for="game in games" :key="game.id" cols="4">
         <ScoreBoardSlot :game="game" />
       </b-col>
     </b-row>

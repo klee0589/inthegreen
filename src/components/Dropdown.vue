@@ -1,21 +1,10 @@
 <template>
-  <div>
-    <b-form-select v-model="selected" :options="links"></b-form-select>
-    <b-container fluid class="bv-example-row" id="gamesListContainer">
-      <b-spinner
-        variant="success"
-        type="grow"
-        label="Spinning"
-        v-if="isLoading"
-      ></b-spinner>
-    </b-container>
-  </div>
+  <b-form-select v-model="selected" :options="links"></b-form-select>
 </template>
 
 <script>
 import axios from "axios";
 import { DateTime } from "luxon";
-import GameInfo from "./GameInfo.vue";
 
 export default {
   data() {
@@ -60,9 +49,6 @@ export default {
         }
       ]
     };
-  },
-  components: {
-    GameInfo
   },
   methods: {
     formatDateAssigned(value) {
@@ -121,6 +107,7 @@ export default {
               odds: sites
             });
           });
+          this.$store.commit("setOdds", this.games);
           this.isLoading = false;
         })
         .catch(e => {

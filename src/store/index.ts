@@ -5,16 +5,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sport: ""
+    sport: "",
+    odds: ""
   },
   mutations: {
     setSport(state, setSport) {
       state.sport = setSport;
+    },
+    setOdds(state, odds) {
+      state.odds = odds;
     }
   },
   actions: {},
   getters: {
-    selectedOption: state => state.sport
+    selectedOption: state => state.sport,
+    getAllOdds: state => state.odds
   },
   modules: {}
 });

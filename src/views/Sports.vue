@@ -3,6 +3,7 @@
     Search Sports
     <Dropdown />
     <ScoreBoard />
+    <BetBoard />
   </div>
 </template>
 
@@ -10,11 +11,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import Dropdown from "@/components/Dropdown.vue";
 import ScoreBoard from "@/components/ScoreBoard.vue";
+import BetBoard from "@/components/BetBoard.vue";
 
 @Component({
   components: {
     Dropdown,
-    ScoreBoard
+    ScoreBoard,
+    BetBoard
   }
 })
 export default class Sports extends Vue {}
