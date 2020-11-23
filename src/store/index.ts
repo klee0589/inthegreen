@@ -12,10 +12,9 @@ export default new Vuex.Store({
       state.sport = setSport;
     }
   },
-  actions: {
-    setSport({ commit }, setSport) {
-      commit("setSport", setSport);
-    }
+  actions: {},
+  getters: {
+    selectedOption: state => state.sport
   },
   modules: {}
 });

@@ -18,36 +18,52 @@
 <script>
 import axios from "axios";
 import ScoreBoardSlot from "./ScoreBoardSlot";
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
       games: "",
-      isLoading: false,
-      sport: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
+      isLoading: false
     };
   },
-  beforeMount() {
+  mounted() {
     this.getSports();
   },
+  computed: mapState({
+    // arrow functions can make the code very succinct!
+    sport: state => state.sport
+
+    // // passing the string value 'count' is same as `state => state.count`
+    // countAlias: 'count',
+
+    // // to access local state with `this`, a normal function must be used
+    // countPlusLocalState (state) {
+    //   return state.count + this.localCount
+    // }
+  }),
+  watch: {
+    sport: function() {
+      this.getSports();
+    }
+  },
   components: {
-    ScoreBoardSlot,
+    ScoreBoardSlot
   },
   methods: {
     async getSports() {
       this.isLoading = true;
       await axios
-        .get(this.sport)
-        .then((response) => {
-          // console.log("here ", response);
+        .get(this.sport[1])
+        .then(response => {
           this.games = response.data.events;
           this.isLoading = false;
         })
-        .catch((e) => {
+        .catch(e => {
           this.errors.push(e);
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

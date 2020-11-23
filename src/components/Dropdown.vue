@@ -103,13 +103,14 @@ export default {
     }
   },
   watch: {
-    selected: function() {
+    selected: function(selectedOption) {
       const apiKey = "799dd1f2c9a88d205fc9307305051e73";
       this.isLoading = true;
       this.games = [];
+      this.$store.commit("setSport", selectedOption);
       axios
         .get(
-          `https://api.the-odds-api.com/v3/odds/?sport=${this.selected[0]}&dateFormat=iso&oddsFormat=american&region=us`,
+          `https://api.the-odds-api.com/v3/odds/?sport=${selectedOption[0]}&dateFormat=iso&oddsFormat=american&region=us`,
           {
             params: {
               api_key: apiKey
