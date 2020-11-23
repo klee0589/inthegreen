@@ -9,15 +9,7 @@
     ></b-spinner>
     <ul>
         <li v-for="game in games" :key="game.id">
-            <!-- {{ game.name }} -->
-            <!-- {{ game.shortName }} -->
-            <!-- {{ game.date }} -->
-            {{ game.competitions[0].competitors[0].team.abbreviation }}
-            {{ game.competitions[0].competitors[0].score }}
-            {{ game.competitions[0].competitors[1].team.abbreviation }}
-            {{ game.competitions[0].competitors[1].score }}
-            |
-            {{ game.competitions[0].status.displayClock }}
+            <ScoreBoardSlot :game="game"/>
         </li>
     </ul>
   </div>
@@ -25,6 +17,7 @@
 
 <script>
 import axios from "axios";
+import ScoreBoardSlot from "./ScoreBoardSlot";
 
 export default {
   data() {
@@ -35,6 +28,9 @@ export default {
   },
   beforeMount() {
     this.getSports();
+  },
+  components: {
+      ScoreBoardSlot
   },
   methods: {
     async getSports() {
@@ -58,7 +54,7 @@ export default {
 
 <style lang="scss">
 #scoreboard_container {
-  background:#114B5F;;
+  background: black;
   border: 1px solid #42b983;
 //   border-radius: 0;
 //   margin: 5px;
