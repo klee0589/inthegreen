@@ -43,7 +43,7 @@ export default {
   text-align: center;
   color: #42b983;
   background-color: #114b5f;
-  height: 100vh;
+  height: 100%;
   font-family: "Graduate", cursive;
 }
 
