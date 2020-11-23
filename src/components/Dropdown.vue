@@ -23,28 +23,28 @@ export default {
           text: "NFL",
           value: [
             "americanfootball_nfl",
-            "http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+            "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
           ]
         },
         {
           text: "EPL",
           value: [
             "soccer_epl",
-            "http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
+            "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
           ]
         },
         {
           text: "BUNDASLIGA",
           value: [
             "soccer_germany_bundesliga",
-            "http://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard"
+            "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard"
           ]
         },
         {
           text: "CHAMPIONS",
           value: [
             "soccer_uefa_champs_league",
-            "http://site.api.espn.com/apis/site/v2/sports/soccer/uefa.uefa/scoreboard"
+            "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.uefa/scoreboard"
           ]
         }
       ]
