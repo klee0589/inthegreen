@@ -37,10 +37,10 @@ export default {
       this.isLoading = true;
       await axios
         .get(
-          "http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
+          "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
         )
         .then((response) => {
-          console.log("here ", response);
+          // console.log("here ", response);
           this.games = response.data.events;
           this.isLoading = false;
         })
