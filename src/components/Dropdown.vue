@@ -8,17 +8,6 @@
         label="Spinning"
         v-if="isLoading"
       ></b-spinner>
-      <b-row>
-        <b-col
-          cols="12"
-          sm="6"
-          med="6"
-          v-for="game in games"
-          :key="game.home_team"
-        >
-          <GameInfo :game="game" :isLoading="isLoading" />
-        </b-col>
-      </b-row>
     </b-container>
   </div>
 </template>
