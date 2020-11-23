@@ -13,8 +13,6 @@
           :sort-desc="sortDesc"
           :sort-by="number"
         ></b-table>
-      </b-col>
-      <b-col cols="6" style="color: black">
         <b-table
           striped
           hover
@@ -27,7 +25,7 @@
       <b-col cols="6">
         <b-table striped hover :items="winningNumbers"></b-table>
       </b-col>
-      <b-col cols="6" style="color: black">
+      <!-- <b-col cols="6" style="color: black">
         Picked
         <ul>
           <li v-for="(pick, index) in talliedPick" :key="pick + index">
@@ -40,7 +38,7 @@
             ></b-progress>
           </li>
         </ul>
-      </b-col>
+      </b-col> -->
     </b-row>
   </b-container>
 </template>

@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="betBoardContainer">
     <b-row>
-      <b-col cols="12" sm="12" med="12" v-for="game in odds" :key="game.teams">
-        <!-- Using value -->
-        <b-button v-b-modal="game.teams" variant="success" class="gameButton">{{
+      <b-col cols="12" sm="4" v-for="game in odds" :key="game.teams">
+        <b-button v-b-modal="game.teams" variant="outline-success" class="gameButton">{{
           game.teams
         }}</b-button>
-        <b-modal :id="game.teams"><GameInfo :game="game"/></b-modal>
+        <b-modal :id="game.teams"><GameInfo :game="game" /></b-modal>
       </b-col>
     </b-row>
   </div>
@@ -19,12 +18,12 @@ import GameInfo from "./GameInfo";
 export default {
   data() {
     return {
-      selected: null
+      selected: null,
     };
   },
   computed: mapState({
     // arrow functions can make the code very succinct!
-    odds: state => state.odds
+    odds: (state) => state.odds,
 
     // // passing the string value 'count' is same as `state => state.count`
     // countAlias: 'count',
@@ -35,8 +34,8 @@ export default {
     // }
   }),
   components: {
-    GameInfo
-  }
+    GameInfo,
+  },
 };
 </script>
 
@@ -44,5 +43,11 @@ export default {
 .gameButton {
   width: 100%;
   font-size: 12px;
+  margin: 4px;
+  border: 1px solid #42b983;
+  border-radius: 0;
+}
+.betBoardContainer {
+  padding: 0px 2px;
 }
 </style>

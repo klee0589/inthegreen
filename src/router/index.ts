@@ -10,7 +10,8 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "Odds",
-    component: Odds
+    component: Odds,
+    redirect: "/sports"
   },
   {
     path: "/sports",

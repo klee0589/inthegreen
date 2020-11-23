@@ -49,6 +49,7 @@ $gray700: #212121;
 $gray900: #0f0f0f;
 $blue: #29bdde;
 $lightBlue: #31a49b;
+$yellow: #FFCD02;
 $red: #ff3d3d;
 $border-radius: 4px;
 $lightGreen: #507450;
@@ -68,12 +69,12 @@ $bodyBg: $gray700;
 $borderColor: $gray700;
 $primaryColor: $blue;
 .text-danger {
-  color: $red;
+  color: $yellow;
 }
 .label {
   font-size: 12px;
   text-transform: uppercase;
-  color: $secondaryTextColor;
+  color: $white;
   font-weight: 800;
   letter-spacing: 0.095em;
   margin-bottom: $space-size / 2;
@@ -125,11 +126,12 @@ $primaryColor: $blue;
   margin-right: $space-size-5;
 }
 .scoreboard {
-  background: $black;
+  // background: $black;
+  border: 1px solid #42b983;
   margin-bottom: $space-size;
   border-radius: $border-radius;
   &__container {
-    padding: $space-size-2;
+    padding: $space-size;
   }
   &__result {
     text-align: center;
@@ -166,11 +168,13 @@ $primaryColor: $blue;
       flex-direction: row-reverse;
       .scoreboard__name {
         text-align: right;
+        font-size: 12px;
       }
     }
     &--align-left {
       .scoreboard__name {
         text-align: left;
+        font-size: 12px;
       }
     }
   }

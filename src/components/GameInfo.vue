@@ -55,7 +55,8 @@ export default {
 <style lang="scss">
 #gameInfoContainer {
   background: #114b5f;
-  border: 1px solid #42b983;
+  // border: 1px solid #42b983;
+  color: #42b983;
   border-radius: 0;
   margin: 5px;
   height: 100%;
