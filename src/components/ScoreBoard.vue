@@ -8,9 +8,9 @@
       v-if="isLoading"
     ></b-spinner>
     <ul>
-        <li v-for="game in games" :key="game.id">
-            <ScoreBoardSlot :game="game"/>
-        </li>
+      <li v-for="game in games" :key="game.id">
+        <ScoreBoardSlot :game="game" />
+      </li>
     </ul>
   </div>
 </template>
@@ -23,14 +23,14 @@ export default {
   data() {
     return {
       games: "",
-      isLoading: false,
+      isLoading: false
     };
   },
   beforeMount() {
     this.getSports();
   },
   components: {
-      ScoreBoardSlot
+    ScoreBoardSlot,
   },
   methods: {
     async getSports() {
@@ -47,7 +47,7 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
-    }
+    },
   }
 };
 </script>
@@ -56,12 +56,5 @@ export default {
 #scoreboard_container {
   background: black;
   border: 1px solid #42b983;
-//   border-radius: 0;
-//   margin: 5px;
-//   height: 100%;
 }
-
-// ul {
-//   padding: 0;
-// }
 </style>
