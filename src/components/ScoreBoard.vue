@@ -7,11 +7,11 @@
       label="Spinning"
       v-if="isLoading"
     ></b-spinner>
-    <ul>
-      <li v-for="game in games" :key="game.id">
+    <b-row>
+      <b-col v-for="game in games" :key="game.id">
         <ScoreBoardSlot :game="game" />
-      </li>
-    </ul>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       games: "",
-      isLoading: false
+      isLoading: false,
     };
   },
   beforeMount() {
@@ -48,7 +48,7 @@ export default {
           this.errors.push(e);
         });
     },
-  }
+  },
 };
 </script>
 
