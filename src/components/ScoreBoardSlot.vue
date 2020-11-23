@@ -49,7 +49,7 @@ $gray700: #212121;
 $gray900: #0f0f0f;
 $blue: #29bdde;
 $lightBlue: #31a49b;
-$yellow: #FFCD02;
+$yellow: #ffcd02;
 $red: #ff3d3d;
 $border-radius: 4px;
 $lightGreen: #507450;
