@@ -38,23 +38,23 @@ export default {
       fields: [
         { key: "teams" },
         { key: "odds", sortable: true },
-        { key: "time", formatter: "formatDateAssigned", sortable: true }
+        { key: "time", formatter: "formatDateAssigned", sortable: true },
       ],
       links: [
         { text: "NFL", value: "americanfootball_nfl" },
         { text: "EPL", value: "soccer_epl" },
         { text: "BUNDASLIGA", value: "soccer_germany_bundesliga" },
-        { text: "CHAMPIONS", value: "soccer_uefa_champs_league" }
-      ]
+        { text: "CHAMPIONS", value: "soccer_uefa_champs_league" },
+      ],
     };
   },
   components: {
-    GameInfo
+    GameInfo,
   },
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
-        zone: "America/New_York"
+        zone: "America/New_York",
       }).toLocaleString(DateTime.DATETIME_FULL);
     },
     async getSports() {
@@ -63,24 +63,24 @@ export default {
         .get(
           "https://api.the-odds-api.com/v3/sports/?apiKey=799dd1f2c9a88d205fc9307305051e73"
         )
-        .then(response => {
+        .then((response) => {
           const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
-          parsedobj.map(obj =>
+          parsedobj.map((obj) =>
             this.gameTypes.push({
               text: obj.details,
-              value: obj.key
+              value: obj.key,
             })
           );
           this.isLoading = false;
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e);
         });
-    }
+    },
   },
   watch: {
-    selected: () => {
-      // store.commit("setSport", this.selected);
+    selected: function () {
+      this.$store.commit("setSport", this.selected)
       const apiKey = "799dd1f2c9a88d205fc9307305051e73";
       this.isLoading = true;
       this.games = [];
@@ -89,36 +89,36 @@ export default {
           `https://api.the-odds-api.com/v3/odds/?sport=${this.selected}&dateFormat=iso&oddsFormat=american&region=us`,
           {
             params: {
-              api_key: apiKey
-            }
+              api_key: apiKey,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
           this.games = [];
-          parsedobj.map(obj => {
-            const { teams, commence_time, sites } = obj;
+          parsedobj.map((obj) => {
+            const { teams, commence_time, sites, home_team } = obj;
             this.games.push({
               teams: teams[0] + " VS " + teams[1],
               home: teams[0],
               away: teams[1],
               time: DateTime.fromISO(commence_time, {
-                zone: "America/New_York"
+                zone: "America/New_York",
               }).toLocaleString(DateTime.DATETIME_FULL),
-              odds: sites
+              odds: sites,
             });
           });
           this.isLoading = false;
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e);
         });
-    }
+    },
   },
   created() {
     this.isLoaded = false;
     this.getSports();
-  }
+  },
 };
 </script>
 
