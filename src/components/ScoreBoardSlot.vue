@@ -71,7 +71,7 @@ $primaryColor: $blue;
   color: $red;
 }
 .label {
-  font-size: 6px;
+  font-size: 12px;
   text-transform: uppercase;
   color: $secondaryTextColor;
   font-weight: 800;
@@ -113,7 +113,7 @@ $primaryColor: $blue;
   margin-right: $space-size;
 }
 .mr-2 {
-  margin-right: $space-size-2;
+  margin-right: $space-size;
 }
 .mr-3 {
   margin-right: $space-size-3;
@@ -140,18 +140,18 @@ $primaryColor: $blue;
   .scoreboard__result-home,
   .scoreboard__result-away,
   .scoreboard__result-separator {
-    font-size: 26px;
+    font-size: 18px;
   }
   .scoreboard__result-separator {
     margin: 0 $space-size;
     color: $secondaryTextColor;
   }
   &__badge {
-    width: 38px;
-    height: 38px;
-    img {
-      height: 100%;
-    }
+    width: 32px;
+    height: 32px;
+    // img {
+    //   height: 100%;
+    // }
   }
   &__teams {
     display: flex;
@@ -177,15 +177,6 @@ $primaryColor: $blue;
   &__name {
     display: block;
     width: 100px;
-  }
-
-  &__nav {
-    border-top: 1px solid $borderColor;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0 $space-size-2;
-    margin: 0;
   }
   &__basics {
     display: flex;
