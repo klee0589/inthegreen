@@ -60,7 +60,7 @@ export default {
       this.isLoading = true;
       await axios
         .get(
-          "https://api.the-odds-api.com/v3/sports/?apiKey=799dd1f2c9a88d205fc9307305051e73"
+          "https://api.the-odds-api.com/v3/sports/?apiKey=b212997d44e4db738af287daa3faabc8"
         )
         .then(response => {
           const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
@@ -79,7 +79,7 @@ export default {
   },
   watch: {
     selected: function(selectedOption) {
-      const apiKey = "799dd1f2c9a88d205fc9307305051e73";
+      const apiKey = "b212997d44e4db738af287daa3faabc8";
       this.isLoading = true;
       this.games = [];
       this.$store.commit("setSport", selectedOption);
