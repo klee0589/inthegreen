@@ -63,7 +63,5 @@ export default {
 <style lang="scss">
 #scoreboard_container {
   padding: 10px 5px;
-  // background: black;
-  // border: 1px solid #42b983;
 }
 </style>

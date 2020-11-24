@@ -44,6 +44,7 @@ export default {
   color: #42b983;
   background-color: #114b5f;
   height: 100%;
+  min-height: 100vh;
   font-family: "Graduate", cursive;
 }
 

@@ -23,4 +23,8 @@ import BetBoard from "@/components/BetBoard.vue";
 export default class Sports extends Vue {}
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.sports {
+  background-color: #114b5f;
+}
+</style>

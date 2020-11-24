@@ -68,6 +68,9 @@ $black: $gray900;
 $bodyBg: $gray700;
 $borderColor: $gray700;
 $primaryColor: $blue;
+.scoreboard:hover {
+  background: $gray900;
+}
 .text-danger {
   color: $yellow;
 }
@@ -75,7 +78,7 @@ $primaryColor: $blue;
   font-size: 12px;
   text-transform: uppercase;
   color: $white;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.095em;
   margin-bottom: $space-size / 2;
 }
