@@ -1,7 +1,7 @@
 <template>
-  <b-container fluid id="lotto" col="12">
+  <b-container fluid id="lotto">
     <b-row>
-      <b-col cols="6" style="color: black">
+      <b-col cols="12" md="6" style="color: black">
         <b-button variant="success" @click="generateLottoNumbers"
           >Generate Lotto</b-button
         >
@@ -11,7 +11,6 @@
           :items="generatedLottoNumbers"
           :fields="fields"
           :sort-desc="sortDesc"
-          :sort-by="number"
         ></b-table>
         <b-table
           striped
@@ -19,10 +18,9 @@
           :items="generatedLottoFinalNumber"
           :fields="fields"
           :sort-desc="sortDesc"
-          :sort-by="number"
         ></b-table>
       </b-col>
-      <b-col cols="6">
+      <b-col cols="12" md="6">
         <b-table striped hover :items="winningNumbers"></b-table>
       </b-col>
       <!-- <b-col cols="6" style="color: black">
