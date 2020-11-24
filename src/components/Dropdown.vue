@@ -44,7 +44,7 @@ export default {
           text: "CHAMPIONS",
           value: [
             "soccer_uefa_champs_league",
-            "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.uefa/scoreboard"
+            "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard"
           ]
         }
       ]
