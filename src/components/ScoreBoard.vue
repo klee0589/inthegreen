@@ -33,16 +33,7 @@ export default {
     this.getSports();
   },
   computed: mapState({
-    // arrow functions can make the code very succinct!
     sport: state => state.sport
-
-    // // passing the string value 'count' is same as `state => state.count`
-    // countAlias: 'count',
-
-    // // to access local state with `this`, a normal function must be used
-    // countPlusLocalState (state) {
-    //   return state.count + this.localCount
-    // }
   }),
   watch: {
     sport: function() {

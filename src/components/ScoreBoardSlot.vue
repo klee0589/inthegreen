@@ -68,17 +68,6 @@ export default {
           this.errors.push(e);
         });
     }
-
-    //   axios
-    //     .request(options)
-    //     .then(function (response) {
-    //       // console.log(response.data);
-    //       return response;
-    //     })
-    //     .catch(function (error) {
-    //       console.error(error);
-    //     });
-    // },
   }
 };
 </script>
