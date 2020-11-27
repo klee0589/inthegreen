@@ -13,11 +13,6 @@ export default {
       games: [],
       gameTypes: [],
       isLoading: false,
-      fields: [
-        { key: "teams" },
-        { key: "odds", sortable: true },
-        { key: "time", formatter: "formatDateAssigned", sortable: true }
-      ],
       links: [
         {
           text: "NFL",

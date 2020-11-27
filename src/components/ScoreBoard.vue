@@ -35,11 +35,11 @@ export default {
     //   return state.count + this.localCount
     // }
   }),
-  watch: {
-    sport: function() {
-      this.getSports();
-    }
-  },
+  // watch: {
+  //   sport: function() {
+  //     this.getSports();
+  //   }
+  // },
   components: {
     ScoreBoardSlot
   },
