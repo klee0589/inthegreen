@@ -1,10 +1,19 @@
 <template>
   <div id="scoreboard_container">
-    <b-row>
-      <b-col v-for="game in games" :key="game.id" cols="12" sm="4">
-        <ScoreBoardSlot :game="game" />
-      </b-col>
-    </b-row>
+    <b-overlay
+      :show="isLoading"
+      spinner-variant="success"
+      spinner-type="grow"
+      spinner-smallå
+      rounded="sm"
+      å
+    >
+      <b-row>
+        <b-col v-for="game in games" :key="game.id" cols="12" sm="4">
+          <ScoreBoardSlot :game="game" />
+        </b-col>
+      </b-row>
+    </b-overlay>
   </div>
 </template>
 
@@ -35,11 +44,11 @@ export default {
     //   return state.count + this.localCount
     // }
   }),
-  // watch: {
-  //   sport: function() {
-  //     this.getSports();
-  //   }
-  // },
+  watch: {
+    sport: function() {
+      this.getSports();
+    }
+  },
   components: {
     ScoreBoardSlot
   },
@@ -53,6 +62,7 @@ export default {
           this.isLoading = false;
         })
         .catch(e => {
+          this.isLoading = false;
           this.errors.push(e);
         });
     }

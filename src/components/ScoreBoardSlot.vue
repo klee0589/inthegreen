@@ -43,26 +43,6 @@ export default {
   props: ["game"],
   filters: {
     getWeather: function() {
-      // const options = {
-      //   method: "GET",
-      //   url: "https://community-open-weather-map.p.rapidapi.com/weather",
-      //   params: {
-      //     q: "London,uk",
-      //     lat: "0",
-      //     lon: "0",
-      //     callback: "test",
-      //     id: "2172797",
-      //     lang: "null",
-      //     units: '"metric" or "imperial"',
-      //     mode: "json",
-      //   },
-      //   headers: {
-      //     "x-rapidapi-key":
-      //       "4CAmq0xDZ3mshfMBzPhg3nXFdwbPp1iAulFjsndyLDYEjyHWws",
-      //     "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      //   },
-      // };
-
       axios
         .get("https://community-open-weather-map.p.rapidapi.com/weather", {
           params: {

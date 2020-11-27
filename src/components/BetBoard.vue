@@ -1,7 +1,7 @@
 <template>
   <div class="betBoardContainer">
     <b-row>
-      <b-col cols="12" sm="4" v-for="game in odds" :key="game.teams">
+      <b-col cols="12" sm="4" v-for="game in odds" :key="game.id">
         <b-button
           v-b-modal="game.teams"
           variant="outline-success"

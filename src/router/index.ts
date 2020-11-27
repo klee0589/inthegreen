@@ -27,7 +27,7 @@ const routes: Array<RouteConfig> = [
     path: "/odds",
     name: "Odds",
     component: Odds
-  },
+  }
 ];
 
 const router = new VueRouter({
