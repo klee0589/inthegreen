@@ -29,9 +29,9 @@ export default {
       isLoading: false
     };
   },
-  mounted() {
-    this.getSports();
-  },
+  // mounted() {
+  //   this.getSports();
+  // },
   computed: mapState({
     sport: state => state.sport
   }),

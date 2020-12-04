@@ -109,10 +109,6 @@ export default {
           this.errors.push(e);
         });
     }
-  },
-  created() {
-    this.isLoaded = false;
-    this.getSports();
   }
 };
 </script>

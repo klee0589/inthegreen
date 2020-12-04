@@ -16,7 +16,14 @@ export default new Vuex.Store({
       state.odds = odds;
     }
   },
-  actions: {},
+  actions: {
+    setSport(context) {
+      context.commit("setSport");
+    },
+    setOdds(context) {
+      context.commit("setOdds");
+    }
+  },
   getters: {
     selectedOption: state => state.sport,
     getAllOdds: state => state.odds

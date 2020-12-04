@@ -55,7 +55,7 @@ import { DateTime } from "luxon";
 export default {
   data() {
     return {
-      sortBy: "id",
+      sortBy: "key",
       sortDesc: true,
       winningNumbers: [],
       picked: [],
@@ -79,15 +79,14 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = [];
+      const unqiuePicked = [...new Set(this.picked)];
 
       for (let i = 0; i <= 4; i++) {
-        let randomElement = this.picked[
-          Math.floor(Math.random() * this.picked.length)
-        ];
+        let randomElement =
+          unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
         if (numberCollection.indexOf(randomElement) === -1) {
-          randomElement = this.picked[
-            Math.floor(Math.random() * this.picked.length)
-          ];
+          randomElement =
+            unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
         }
         numberCollection.push({ number: parseInt(randomElement) });
       }
