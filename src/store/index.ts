@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     sport: "",
-    odds: ""
+    odds: "",
+    games: ""
   },
   mutations: {
     setSport(state, setSport) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     setOdds(state, odds) {
       state.odds = odds;
+    },
+    setGamesForSport(state, games) {
+      state.games = games;
     }
   },
   actions: {
@@ -22,11 +26,15 @@ export default new Vuex.Store({
     },
     setOdds(context) {
       context.commit("setOdds");
+    },
+    setGamesForSport(context) {
+      context.commit("setGamesForSport");
     }
   },
   getters: {
     selectedOption: state => state.sport,
-    getAllOdds: state => state.odds
+    getAllOdds: state => state.odds,
+    getAllGamesForSport: state => state.games
   },
   modules: {}
 });

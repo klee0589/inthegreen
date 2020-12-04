@@ -25,15 +25,13 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      games: "",
+      // games: "",
       isLoading: false
     };
   },
-  // mounted() {
-  //   this.getSports();
-  // },
   computed: mapState({
-    sport: state => state.sport
+    sport: state => state.sport,
+    games: state => state.games
   }),
   watch: {
     sport: function() {
@@ -49,7 +47,8 @@ export default {
       await axios
         .get(this.sport[1])
         .then(response => {
-          this.games = response.data.events;
+          // this.games = response.data.events;
+          this.$store.commit("setGamesForSport", response.data.events);
           this.isLoading = false;
         })
         .catch(e => {
