@@ -1,7 +1,6 @@
 <template>
   <div class="scoreboard">
     <div class="scoreboard__container">
-      {{ game | getWeather }}
       <div class="scoreboard__basics mb-05">
         <span class="label">
           {{ game.competitions[0].status.type.description }}
@@ -38,37 +37,8 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
-  props: ["game"],
-  filters: {
-    getWeather: function() {
-      axios
-        .get("https://community-open-weather-map.p.rapidapi.com/weather", {
-          params: {
-            headers: {
-              "x-rapidapi-key":
-                "4CAmq0xDZ3mshfMBzPhg3nXFdwbPp1iAulFjsndyLDYEjyHWws",
-              "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
-            },
-            q: "London,uk",
-            lat: "0",
-            lon: "0",
-            callback: "test",
-            id: "2172797",
-            lang: "null",
-            units: '"metric" or "imperial"',
-            mode: "json"
-          }
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
-    }
-  }
+  props: ["game"]
 };
 </script>
 
