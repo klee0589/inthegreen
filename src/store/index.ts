@@ -12,7 +12,8 @@ export default new Vuex.Store({
     sport: "",
     odds: "",
     games: "",
-    isLoading: false,
+    isGamesLoading: false,
+    isOddsLoading: false,
     error: "",
     selectedOption: ""
   },
@@ -26,13 +27,16 @@ export default new Vuex.Store({
     setGamesForSport(state, games) {
       state.games = games;
     },
-    isLoading(state, isLoading) {
-      state.isLoading = isLoading;
+    isGamesLoading(state, isGamesLoading) {
+      state.isGamesLoading = isGamesLoading;
+    },
+    isOddsLoading(state, isOddsLoading) {
+      state.isOddsLoading = isOddsLoading;
     }
   },
   actions: {
     setSport(context, selectedOption) {
-      context.commit("isLoading", true);
+      context.commit("isOddsLoading", true);
       this.state.selectedOption = selectedOption;
       axios
         .get(
@@ -71,25 +75,26 @@ export default new Vuex.Store({
             }
           );
           context.commit("setOdds", games);
-          context.commit("isLoading", false);
+          context.commit("isOddsLoading", false);
         })
         .catch(e => {
           this.state.error = e;
-          context.commit("isLoading", false);
+          context.commit("isOddsLoading", false);
         });
     },
     setOdds(context) {
       context.commit("setOdds");
     },
     setGamesForSport(context) {
+      context.commit("isGamesLoading", true);
       axios
         .get(this.state.selectedOption[1])
         .then(response => {
           context.commit("setGamesForSport", response.data.events);
-          context.commit("isLoading", false);
+          context.commit("isGamesLoading", false);
         })
         .catch(e => {
-          context.commit("isLoading", false);
+          context.commit("isGamesLoading", false);
           this.state.error = e;
         });
     }

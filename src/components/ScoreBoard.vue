@@ -24,7 +24,7 @@ export default {
   computed: mapState({
     sport: state => state.sport,
     games: state => state.games,
-    isLoading: state => state.isLoading
+    isLoading: state => state.isGamesLoading
   }),
   components: {
     ScoreBoardSlot

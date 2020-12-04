@@ -34,7 +34,7 @@ export default {
   },
   computed: mapState({
     odds: state => state.odds,
-    isLoading: state => state.isLoading
+    isLoading: state => state.isOddsLoading
   }),
   components: {
     GameInfo
