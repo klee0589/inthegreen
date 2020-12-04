@@ -28,3 +28,9 @@ export const links = [
     ]
   }
 ];
+
+export const routes = [
+  { name: "Odd", url: "/odds" },
+  { name: "Sports", url: "/sports" },
+  { name: "Lotto", url: "/lotto" }
+];

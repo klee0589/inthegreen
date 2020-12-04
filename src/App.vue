@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/odds">Odd Calculator</router-link> |
-      <router-link to="/sports">Sports</router-link> |
-      <router-link to="/lotto">Lotto</router-link>
+      <router-link v-for="route in routes" :to="route.url" :key="route.name">{{
+        route.name
+      }}</router-link>
     </div>
     <div class="timeContainer">
       {{ time | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}
@@ -14,11 +14,13 @@
 
 <script>
 import { DateTime } from "luxon";
+import { routes } from "./constants";
 
 export default {
   data() {
     return {
-      time: ""
+      time: "",
+      routes
     };
   },
   created() {
