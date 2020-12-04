@@ -102,8 +102,7 @@ export default new Vuex.Store({
   getters: {
     selectedOption: state => state.sport,
     getAllOdds: state => state.odds,
-    getAllGamesForSport: state => state.games,
-    isLoading: state => state.isLoading
+    getAllGamesForSport: state => state.games
   },
   modules: {}
 });
