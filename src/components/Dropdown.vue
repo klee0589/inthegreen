@@ -74,40 +74,8 @@ export default {
   },
   watch: {
     selected: function(selectedOption) {
-      const apiKey = "b212997d44e4db738af287daa3faabc8";
-      this.isLoading = true;
-      this.games = [];
-      this.$store.commit("setSport", selectedOption);
-      axios
-        .get(
-          `https://api.the-odds-api.com/v3/odds/?sport=${selectedOption[0]}&dateFormat=iso&oddsFormat=american&region=us`,
-          {
-            params: {
-              api_key: apiKey
-            }
-          }
-        )
-        .then(response => {
-          const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
-          this.games = [];
-          parsedobj.map(obj => {
-            const { teams, commence_time, sites } = obj;
-            this.games.push({
-              teams: teams[0] + " VS " + teams[1],
-              home: teams[0],
-              away: teams[1],
-              time: DateTime.fromISO(commence_time, {
-                zone: "America/New_York"
-              }).toLocaleString(DateTime.DATETIME_FULL),
-              odds: sites
-            });
-          });
-          this.$store.commit("setOdds", this.games);
-          this.isLoading = false;
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
+      this.$store.dispatch("setSport", selectedOption);
+      this.$store.dispatch("setGamesForSport");
     }
   }
 };

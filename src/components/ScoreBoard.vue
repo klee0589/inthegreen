@@ -18,44 +18,17 @@
 </template>
 
 <script>
-import axios from "axios";
 import ScoreBoardSlot from "./ScoreBoardSlot";
 import { mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      // games: "",
-      isLoading: false
-    };
-  },
   computed: mapState({
     sport: state => state.sport,
-    games: state => state.games
+    games: state => state.games,
+    isLoading: state => state.isLoading
   }),
-  watch: {
-    sport: function() {
-      this.getSports();
-    }
-  },
   components: {
     ScoreBoardSlot
-  },
-  methods: {
-    async getSports() {
-      this.isLoading = true;
-      await axios
-        .get(this.sport[1])
-        .then(response => {
-          // this.games = response.data.events;
-          this.$store.commit("setGamesForSport", response.data.events);
-          this.isLoading = false;
-        })
-        .catch(e => {
-          this.isLoading = false;
-          this.errors.push(e);
-        });
-    }
   }
 };
 </script>
