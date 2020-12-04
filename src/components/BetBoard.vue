@@ -1,16 +1,24 @@
 <template>
   <div class="betBoardContainer">
-    <b-row>
-      <b-col cols="12" sm="4" v-for="game in odds" :key="game.id">
-        <b-button
-          v-b-modal="game.teams"
-          variant="outline-success"
-          class="gameButton"
-          >{{ game.teams }}</b-button
-        >
-        <b-modal :id="game.teams"><GameInfo :game="game"/></b-modal>
-      </b-col>
-    </b-row>
+    <b-overlay
+      :show="isLoading"
+      spinner-variant="success"
+      spinner-type="grow"
+      spinner-small
+      rounded="sm"
+    >
+      <b-row>
+        <b-col cols="12" sm="4" v-for="game in odds" :key="game.id">
+          <b-button
+            v-b-modal="game.teams"
+            variant="outline-success"
+            class="gameButton"
+            >{{ game.teams }}</b-button
+          >
+          <b-modal :id="game.teams"><GameInfo :game="game"/></b-modal>
+        </b-col>
+      </b-row>
+    </b-overlay>
   </div>
 </template>
 
@@ -25,7 +33,8 @@ export default {
     };
   },
   computed: mapState({
-    odds: state => state.odds
+    odds: state => state.odds,
+    isLoading: state => state.isLoading
   }),
   components: {
     GameInfo

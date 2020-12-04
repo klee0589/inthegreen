@@ -6,7 +6,6 @@
       spinner-type="grow"
       spinner-smallå
       rounded="sm"
-      å
     >
       <b-row>
         <b-col v-for="game in games" :key="game.id" cols="12" sm="4">

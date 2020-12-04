@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import { DateTime } from "luxon";
+import { links } from "@/constants";
 
 export default {
   data() {
@@ -12,37 +12,7 @@ export default {
       selected: null,
       games: [],
       gameTypes: [],
-      isLoading: false,
-      links: [
-        {
-          text: "NFL",
-          value: [
-            "americanfootball_nfl",
-            "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
-          ]
-        },
-        {
-          text: "EPL",
-          value: [
-            "soccer_epl",
-            "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
-          ]
-        },
-        {
-          text: "BUNDASLIGA",
-          value: [
-            "soccer_germany_bundesliga",
-            "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard"
-          ]
-        },
-        {
-          text: "CHAMPIONS",
-          value: [
-            "soccer_uefa_champs_league",
-            "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard"
-          ]
-        }
-      ]
+      links
     };
   },
   methods: {
@@ -50,26 +20,6 @@ export default {
       return DateTime.fromISO(value, {
         zone: "America/New_York"
       }).toLocaleString(DateTime.DATETIME_FULL);
-    },
-    async getSports() {
-      this.isLoading = true;
-      await axios
-        .get(
-          "https://api.the-odds-api.com/v3/sports/?apiKey=b212997d44e4db738af287daa3faabc8"
-        )
-        .then(response => {
-          const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
-          parsedobj.map(obj =>
-            this.gameTypes.push({
-              text: obj.details,
-              value: obj.key
-            })
-          );
-          this.isLoading = false;
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
     }
   },
   watch: {

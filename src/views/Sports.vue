@@ -1,9 +1,17 @@
 <template>
   <div class="sports">
-    Search Sports
-    <Dropdown />
-    <ScoreBoard />
-    <BetBoard />
+    <b-overlay
+      :show="isLoading"
+      spinner-variant="success"
+      spinner-type="grow"
+      spinner-smallå
+      rounded="sm"
+    >
+      Search Sports
+      <Dropdown />
+      <ScoreBoard />
+      <BetBoard />
+    </b-overlay>
   </div>
 </template>
 

@@ -47,13 +47,17 @@ export default new Vuex.Store({
           const parsedobj = JSON.parse(JSON.stringify(response.data)).data;
           const games: {
             teams: string;
-            home: any;
-            away: any;
-            time: any;
-            odds: any;
+            home: string;
+            away: string;
+            time: string;
+            odds: Array<number>;
           }[] = [];
           parsedobj.map(
-            (obj: { teams: any; commence_time: any; sites: any }) => {
+            (obj: {
+              teams: string;
+              commence_time: string;
+              sites: Array<number>;
+            }) => {
               const { teams, commence_time, sites } = obj;
               games.push({
                 teams: teams[0] + " VS " + teams[1],
