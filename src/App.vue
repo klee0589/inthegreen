@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     displayTime() {
-      this.time = DateTime.local().toLocaleString(DateTime.DATETIME_SHORT);
+      this.time = DateTime.local().toISO(DateTime.DATETIME_SHORT);
     }
   }
 };

@@ -2,9 +2,7 @@
   <b-container fluid id="lotto">
     <b-row>
       <b-col cols="12" md="6" style="color: black">
-        <b-button variant="success" @click="generateLottoNumbers"
-          >Generate Lotto</b-button
-        >
+        <b-button @click="generateLottoNumbers">Generate Lotto</b-button>
         <b-table
           striped
           hover
@@ -21,12 +19,7 @@
         ></b-table>
       </b-col>
       <b-col cols="12" md="6">
-        <b-overlay
-          :show="isLoading"
-          :variant="success"
-          :opacity="0.85"
-          rounded="sm"
-        >
+        <b-overlay :show="isLoading" :opacity="0.85" rounded="sm">
           <b-table striped hover :items="winningNumbers"></b-table>
         </b-overlay>
       </b-col>
@@ -79,28 +72,38 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = [];
-      const unqiuePicked = [...new Set(this.picked)];
+      const unqiuePicked = this.picked;
 
-      for (let i = 0; i <= 4; i++) {
-        let randomElement =
+      while (numberCollection.length < 5) {
+        const randomElement =
           unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
+          // console.log('numberCollection.indexOf(randomElement) ', numberCollection)
         if (numberCollection.indexOf(randomElement) === -1) {
-          randomElement =
-            unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
+          numberCollection.push({ number: parseInt(randomElement) });
         }
-        numberCollection.push({ number: parseInt(randomElement) });
       }
+                console.log('numberCollection ', numberCollection)
 
-      const randomPowerBallNumbers = [
-        {
-          number: this.winningNumbers[
-            Math.floor(Math.random() * this.winningNumbers.length)
-          ].power
-        }
-      ];
+      // for (let i = 0; i <= 4; i++) {
+      //   let randomElement =
+      //     unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
+      //   if (numberCollection.indexOf(randomElement) === -1) {
+      //     randomElement =
+      //       unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
+      //   }
+      //   numberCollection.push({ number: parseInt(randomElement) });
+      // }
 
-      this.generatedLottoNumbers = numberCollection;
-      this.generatedLottoFinalNumber = randomPowerBallNumbers;
+      // const randomPowerBallNumbers = [
+      //   {
+      //     number: this.winningNumbers[
+      //       Math.floor(Math.random() * this.winningNumbers.length)
+      //     ].power
+      //   }
+      // ];
+
+      this.generatedLottoNumbers = numberCollection.sort();
+      // this.generatedLottoFinalNumber = randomPowerBallNumbers;
     }
   },
   created() {
