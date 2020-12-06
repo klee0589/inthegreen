@@ -3,20 +3,7 @@
     <b-row>
       <b-col cols="12" md="6" style="color: black">
         <b-button @click="generateLottoNumbers">Generate Lotto</b-button>
-        <b-table
-          striped
-          hover
-          :items="generatedLottoNumbers"
-          :fields="fields"
-          :sort-desc="sortDesc"
-        ></b-table>
-        <b-table
-          striped
-          hover
-          :items="generatedLottoFinalNumber"
-          :fields="fields"
-          :sort-desc="sortDesc"
-        ></b-table>
+        <div v-for="number in generatedLottoNumbers" :key="number">{{ number.number }}</div>
       </b-col>
       <b-col cols="12" md="6">
         <b-overlay :show="isLoading" :opacity="0.85" rounded="sm">
@@ -77,33 +64,12 @@ export default {
       while (numberCollection.length < 5) {
         const randomElement =
           unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
-          // console.log('numberCollection.indexOf(randomElement) ', numberCollection)
         if (numberCollection.indexOf(randomElement) === -1) {
-          numberCollection.push({ number: parseInt(randomElement) });
+          numberCollection.push({ randomElement });
         }
       }
-                console.log('numberCollection ', numberCollection)
-
-      // for (let i = 0; i <= 4; i++) {
-      //   let randomElement =
-      //     unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
-      //   if (numberCollection.indexOf(randomElement) === -1) {
-      //     randomElement =
-      //       unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
-      //   }
-      //   numberCollection.push({ number: parseInt(randomElement) });
-      // }
-
-      // const randomPowerBallNumbers = [
-      //   {
-      //     number: this.winningNumbers[
-      //       Math.floor(Math.random() * this.winningNumbers.length)
-      //     ].power
-      //   }
-      // ];
-
       this.generatedLottoNumbers = numberCollection.sort();
-      // this.generatedLottoFinalNumber = randomPowerBallNumbers;
+      // this.generatedLottoFinalNumber = unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
     }
   },
   created() {
