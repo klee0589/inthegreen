@@ -1,10 +1,15 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link v-for="route in routes" :to="route.url" :key="route.name">{{
-        route.name
-      }}</router-link>
+      <router-link
+        v-for="route in routes"
+        :to="route.url"
+        :key="route.name"
+        class="route"
+        >{{ route.name }}</router-link
+      >
     </div>
+    <img src="./assets/logo.png" class="logo" />
     <div class="timeContainer">
       {{ time | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}
     </div>
@@ -71,5 +76,83 @@ li {
   margin: 10px;
   padding: 10px;
   font-size: 25px;
+}
+
+.logo {
+  max-height: 50px;
+  -webkit-animation: spinner 20000ms infinite linear;
+  -moz-animation: spinner 20000ms infinite linear;
+  -ms-animation: spinner 20000ms infinite linear;
+  -o-animation: spinner 20000ms infinite linear;
+  animation: spinner 20000ms infinite linear;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.route {
+  padding: 3px;
 }
 </style>

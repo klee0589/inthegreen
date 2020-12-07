@@ -3,7 +3,9 @@
     <b-row>
       <b-col cols="12" md="6" style="color: black">
         <b-button @click="generateLottoNumbers">Generate Lotto</b-button>
-        <div v-for="number in generatedLottoNumbers" :key="number">{{ number.number }}</div>
+        <div v-for="number in generatedLottoNumbers" :key="number">
+          {{ number.number }}
+        </div>
       </b-col>
       <b-col cols="12" md="6">
         <b-overlay :show="isLoading" :opacity="0.85" rounded="sm">

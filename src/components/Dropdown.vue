@@ -1,5 +1,15 @@
 <template>
-  <b-form-select v-model="selected" :options="links"></b-form-select>
+  <b-container>
+    <b-row class="justify-content-md-center">
+      <b-col cols="12" sm="3">
+        <b-form-select
+          v-model="selected"
+          :options="links"
+          class="text-center"
+        ></b-form-select>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
