@@ -112,7 +112,7 @@ export default new Vuex.Store({
   },
   getters: {
     getFormattedLottoNumbers: state => {
-      return state.lotto.numbers
+      return state.lotto.numbers;
     }
   },
   modules: {}

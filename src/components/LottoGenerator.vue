@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
 import { DateTime } from "luxon";
 
 export default {
@@ -38,7 +38,7 @@ export default {
       isLoading: false
     };
   },
-  computed: mapGetters(['getFormattedLottoNumbers']),
+  computed: mapGetters(["getFormattedLottoNumbers"]),
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
@@ -57,7 +57,8 @@ export default {
         }
       }
       this.generatedLottoNumbers = numberCollection.sort();
-      this.generatedLottoFinalNumber = unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
+      this.generatedLottoFinalNumber =
+        unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
     }
   },
   created() {
