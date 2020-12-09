@@ -46,7 +46,7 @@ export default {
     };
   },
   props: {
-    game: Array
+    game: Object
   },
   created() {
     this.teams = this.game.teams[0] + " VS " + this.game.teams[1];
