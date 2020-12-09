@@ -45,7 +45,9 @@ export default {
       fields: ["site_nice", "odds"]
     };
   },
-  props: ["game"],
+  props: {
+    game: Array
+  },
   created() {
     this.teams = this.game.teams[0] + " VS " + this.game.teams[1];
   }

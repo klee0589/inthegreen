@@ -7,12 +7,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import OddsCalculator from "@/components/OddsCalculator.vue";
-import Dropdown from "@/components/Dropdown.vue";
+import BaseDropdown from "@/components/BaseDropdown.vue";
 
 @Component({
   components: {
     OddsCalculator,
-    Dropdown
+    BaseDropdown
   }
 })
 export default class Home extends Vue {}
