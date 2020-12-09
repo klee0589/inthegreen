@@ -15,7 +15,14 @@
             class="gameButton"
             >{{ game.teams }}</b-button
           >
-          <b-modal :id="game.teams" :title="game.teams" cancel-disabled size="xl" centered ><BetInfo :game="game"/></b-modal>
+          <b-modal
+            :id="game.teams"
+            :title="game.teams"
+            cancel-disabled
+            size="xl"
+            centered
+            ><BetInfo :game="game"
+          /></b-modal>
         </b-col>
       </b-row>
     </b-overlay>
