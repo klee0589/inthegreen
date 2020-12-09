@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { mapState } from "vuex";
 import { DateTime } from "luxon";
 
