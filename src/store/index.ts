@@ -103,25 +103,9 @@ export default new Vuex.Store({
         .get('https://data.ny.gov/resource/d6yy-54nr.json')
         .then((response) => {
           const numbers = JSON.parse(JSON.stringify(response.data))
-          // numbers.map((obj) => {
-          //   const splitNum = obj.winning_numbers.split(' ')
-          //   const lottoNumbers = {
-          //     date: DateTime.fromISO(obj.draw_date, {
-          //       zone: "America/New_York"
-          //     }).toLocaleString(DateTime),
-          //     first: parseInt(splitNum[0]),
-          //     seconds: parseInt(splitNum[1]),
-          //     third: parseInt(splitNum[2]),
-          //     fourth: parseInt(splitNum[3]),
-          //     fifth: parseInt(splitNum[4]),
-          //     power: parseInt(splitNum[5])
-          //   }
-          // }
           context.commit('ADD_LOTTO_NUMBERS', numbers)
-          // this.isLoading = false
         })
         .catch((e) => {
-          // this.errors.push(e)
         })
     }
   },
