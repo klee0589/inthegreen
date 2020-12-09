@@ -111,9 +111,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    getSelectedOption: state => state.sport,
-    getAllOdds: state => state.odds,
-    getAllGamesForSport: state => state.games
+    getFormattedLottoNumbers: state => {
+      return state.lotto.numbers
+    }
   },
   modules: {}
 });

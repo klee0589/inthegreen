@@ -4,34 +4,20 @@
       <b-col cols="12" md="6" style="color: black">
         <b-button @click="generateLottoNumbers">Generate Lotto</b-button>
         <div v-for="number in generatedLottoNumbers" :key="number">
-          {{ number.number }}
+          {{ number }}
         </div>
       </b-col>
       <b-col cols="12" md="6">
         <b-overlay :show="isLoading" :opacity="0.85" rounded="sm">
-          <b-table striped hover :items="winningNumbers"></b-table>
+          <b-table striped hover :items="getFormattedLottoNumbers"></b-table>
         </b-overlay>
       </b-col>
-      <!-- <b-col cols="6" style="color: black">
-        Picked
-        <ul>
-          <li v-for="(pick, index) in talliedPick" :key="pick + index">
-            {{ pick.id }} | {{ pick.tally }}
-            <b-progress
-              :value="pick.tally"
-              :max="winningNumbers.length"
-              show-progress
-              animated
-            ></b-progress>
-          </li>
-        </ul>
-      </b-col> -->
     </b-row>
   </b-container>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import { DateTime } from "luxon";
 
 export default {
@@ -41,8 +27,8 @@ export default {
       sortDesc: true,
       picked: [],
       talliedPick: [],
-      generatedLottoNumbers: null,
-      generatedLottoFinalNumber: null,
+      generatedLottoNumbers: "",
+      generatedLottoFinalNumber: "",
       fields: [
         {
           key: "number",
@@ -52,9 +38,7 @@ export default {
       isLoading: false
     };
   },
-  computed: mapState({
-    winningNumbers: state => state.lotto.numbers
-  }),
+  computed: mapGetters(['getFormattedLottoNumbers']),
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
@@ -73,7 +57,7 @@ export default {
         }
       }
       this.generatedLottoNumbers = numberCollection.sort();
-      // this.generatedLottoFinalNumber = unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
+      this.generatedLottoFinalNumber = unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
     }
   },
   created() {
