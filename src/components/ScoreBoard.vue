@@ -8,8 +8,10 @@
       rounded="sm"
     >
       <b-row>
-        <b-col v-for="game in games" :key="game.id" cols="12" sm="4">
-          <ScoreBoardSlot :game="game" />
+        <b-col cols="12" sm="4">
+          <li v-for="game in games" :key="game">
+            <ScoreBoardSlot :game="game" />
+          </li>
         </b-col>
       </b-row>
     </b-overlay>
