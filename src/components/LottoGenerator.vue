@@ -32,6 +32,7 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 import { DateTime } from "luxon";
 
 export default {
@@ -39,7 +40,6 @@ export default {
     return {
       sortBy: "key",
       sortDesc: true,
-      winningNumbers: [],
       picked: [],
       talliedPick: [],
       generatedLottoNumbers: null,
@@ -53,6 +53,9 @@ export default {
       isLoading: false
     };
   },
+  computed: mapState({
+    winningNumbers: state => state.lotto.numbers
+  }),
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
@@ -75,38 +78,7 @@ export default {
     }
   },
   created() {
-    this.isLoading = true;
-    axios
-      .get("https://data.ny.gov/resource/d6yy-54nr.json")
-      .then(response => {
-        this.items = response.data;
-        const numbers = JSON.parse(JSON.stringify(response.data));
-        numbers.map(obj => {
-          const splitNum = obj.winning_numbers.split(" ");
-          splitNum.map(number => {
-            this.picked.push(number);
-          });
-          this.winningNumbers.push({
-            date: this.formatDateAssigned(obj.draw_date),
-            first: parseInt(splitNum[0]),
-            seconds: parseInt(splitNum[1]),
-            third: parseInt(splitNum[2]),
-            fourth: parseInt(splitNum[3]),
-            fifth: parseInt(splitNum[4]),
-            power: parseInt(splitNum[5])
-          });
-        });
-        for (let i = 1; i < 70; i++) {
-          const { picked } = this;
-          const groupedPicks = picked.filter(pick => parseInt(pick) === i)
-            .length;
-          this.talliedPick.push({ id: i, tally: groupedPicks });
-        }
-        this.isLoading = false;
-      })
-      .catch(e => {
-        this.errors.push(e);
-      });
+    this.$store.dispatch("fetchLottoNumbers");
   }
 };
 </script>
