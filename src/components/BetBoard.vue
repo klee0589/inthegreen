@@ -15,7 +15,7 @@
             class="gameButton"
             >{{ game.teams }}</b-button
           >
-          <b-modal :id="game.teams"><GameInfo :game="game"/></b-modal>
+          <b-modal :id="game.teams"><BetInfo :game="game"/></b-modal>
         </b-col>
       </b-row>
     </b-overlay>
@@ -24,7 +24,7 @@
 
 <script>
 import { mapState } from "vuex";
-import GameInfo from "./GameInfo";
+import BetInfo from "./BetInfo";
 
 export default {
   data() {
@@ -37,7 +37,7 @@ export default {
     isLoading: state => state.isOddsLoading
   }),
   components: {
-    GameInfo
+    BetInfo
   }
 };
 </script>

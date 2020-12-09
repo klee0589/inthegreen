@@ -5,7 +5,9 @@ import ScoreBoardSlot from "@/components/ScoreBoardSlot.vue";
 // The component to test
 const MessageComponent = {
   ScoreBoardSlot,
-  props: ["game"]
+  props: {
+    game: Array
+  }
 };
 
 test("displays message", async () => {

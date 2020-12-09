@@ -15,28 +15,31 @@ export default new Vuex.Store({
     isGamesLoading: false,
     isOddsLoading: false,
     error: "",
-    selectedOption: ""
+    selectedOption: "",
+    lotto: {
+      numbers: ""
+    }
   },
   mutations: {
-    setSport(state, setSport) {
-      state.sport = setSport;
-    },
-    setOdds(state, odds) {
+    SET_ODDS(state, odds) {
       state.odds = odds;
     },
-    setGamesForSport(state, games) {
+    SET_GAME_TYPE(state, games) {
       state.games = games;
     },
-    isGamesLoading(state, isGamesLoading) {
+    SET_GAME_LOADING(state, isGamesLoading) {
       state.isGamesLoading = isGamesLoading;
     },
-    isOddsLoading(state, isOddsLoading) {
+    SET_ODDS_LOADING(state, isOddsLoading) {
       state.isOddsLoading = isOddsLoading;
+    },
+    ADD_LOTTO_NUMBERS(state, lottoNumbers) {
+      state.lotto.numbers = lottoNumbers;
     }
   },
   actions: {
     setSport(context, selectedOption) {
-      context.commit("isOddsLoading", true);
+      context.commit("SET_ODDS_LOADING", true);
       this.state.selectedOption = selectedOption;
       axios
         .get(
@@ -74,29 +77,32 @@ export default new Vuex.Store({
               });
             }
           );
-          context.commit("setOdds", games);
-          context.commit("isOddsLoading", false);
+          context.commit("SET_ODDS", games);
+          context.commit("SET_ODDS_LOADING", false);
         })
         .catch(e => {
           this.state.error = e;
-          context.commit("isOddsLoading", false);
+          context.commit("SET_ODDS_LOADING", false);
         });
     },
     setOdds(context) {
-      context.commit("setOdds");
+      context.commit("SET_ODDS");
     },
     setGamesForSport(context) {
-      context.commit("isGamesLoading", true);
+      context.commit("SET_GAME_LOADING", true);
       axios
         .get(this.state.selectedOption[1])
         .then(response => {
-          context.commit("setGamesForSport", response.data.events);
-          context.commit("isGamesLoading", false);
+          context.commit("SET_GAME_TYPE", response.data.events);
+          context.commit("SET_GAME_LOADING", false);
         })
         .catch(e => {
-          context.commit("isGamesLoading", false);
+          context.commit("SET_GAME_LOADING", false);
           this.state.error = e;
         });
+    },
+    fetchLottoNumbers(context, lottoNumbers) {
+      context.commit("ADD_LOTTO_NUMBERS", lottoNumbers);
     }
   },
   getters: {

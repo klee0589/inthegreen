@@ -33,7 +33,7 @@ export const links = [
       "soccer_uefa_champs_league",
       "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard"
     ]
-  }  
+  }
 ];
 
 export const routes = [
