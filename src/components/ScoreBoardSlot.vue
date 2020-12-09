@@ -5,6 +5,9 @@
         <span class="label">
           {{ game.competitions[0].status.type.description }}
         </span>
+        <span class="label" v-show="game.competitions[0].status.type.description === 'Scheduled'">
+          {{ game.competitions[0].status.type.detail }}
+        </span>
         <span class="text-danger">
           {{ game.competitions[0].status.displayClock }}
         </span>
