@@ -34,7 +34,7 @@ export default {
   },
   watch: {
     selected: function(selectedOption) {
-      this.$store.dispatch("setSport", selectedOption);
+      this.$store.dispatch("setSportType", selectedOption);
       this.$store.dispatch("setGamesForSport");
     }
   }

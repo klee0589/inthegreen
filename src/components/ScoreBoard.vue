@@ -22,7 +22,6 @@ import { mapState } from "vuex";
 
 export default {
   computed: mapState({
-    sport: state => state.sport,
     games: state => state.games,
     isLoading: state => state.isGamesLoading
   }),

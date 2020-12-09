@@ -38,7 +38,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    setSport(context, selectedOption) {
+    setSportType(context, selectedOption) {
       context.commit("SET_ODDS_LOADING", true);
       this.state.selectedOption = selectedOption;
       axios
@@ -85,9 +85,6 @@ export default new Vuex.Store({
           context.commit("SET_ODDS_LOADING", false);
         });
     },
-    setOdds(context) {
-      context.commit("SET_ODDS");
-    },
     setGamesForSport(context) {
       context.commit("SET_GAME_LOADING", true);
       axios
@@ -106,7 +103,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    selectedOption: state => state.sport,
+    getSelectedOption: state => state.sport,
     getAllOdds: state => state.odds,
     getAllGamesForSport: state => state.games
   },
