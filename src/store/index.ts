@@ -96,7 +96,6 @@ export default new Vuex.Store({
             event.selected = false;
             return event;
           });
-          console.log("events ", formattedEvents);
 
           context.commit("SET_GAME_TYPE", formattedEvents);
           context.commit("SET_GAME_LOADING", false);
