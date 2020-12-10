@@ -1,5 +1,5 @@
 <template>
-  <div class="scoreboard">
+  <div class="scoreboard" @click="highLight" :class="{ highLighted }">
     <div class="scoreboard__container">
       <div class="scoreboard__basics mb-05">
         <span class="label">
@@ -46,6 +46,16 @@
 export default {
   props: {
     game: Object
+  },
+  data() {
+    return {
+      highLighted: false
+    };
+  },
+  methods: {
+    highLight() {
+      this.highLighted = !this.highLighted;
+    }
   }
 };
 </script>
@@ -137,7 +147,6 @@ $primaryColor: $blue;
   margin-right: $space-size-5;
 }
 .scoreboard {
-  // background: $black;
   border: 1px solid #42b983;
   margin-bottom: $space-size;
   border-radius: $border-radius;
@@ -162,9 +171,6 @@ $primaryColor: $blue;
   &__badge {
     width: 32px;
     height: 32px;
-    // img {
-    //   height: 100%;
-    // }
   }
   &__teams {
     display: flex;
@@ -199,5 +205,9 @@ $primaryColor: $blue;
     justify-content: center;
     align-items: center;
   }
+}
+
+.highLighted {
+  background: $gray900;
 }
 </style>
