@@ -1,6 +1,7 @@
 <template>
   <div class="scoreboard" @click="highLight" :class="{ highLighted }">
     <div class="scoreboard__container">
+      {{ game.name }}
       <div class="scoreboard__basics mb-05">
         <span class="label">
           {{ game.competitions[0].status.type.description }}
