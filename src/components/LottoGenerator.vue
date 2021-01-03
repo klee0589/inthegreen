@@ -9,7 +9,11 @@
       </b-col>
       <b-col cols="12" md="6">
         <b-overlay :show="isLoading" :opacity="0.85" rounded="sm">
-          <b-table striped hover :items="getFormattedLottoNumbers.numbers"></b-table>
+          <b-table
+            striped
+            hover
+            :items="getFormattedLottoNumbers.numbers"
+          ></b-table>
         </b-overlay>
       </b-col>
     </b-row>
@@ -49,17 +53,20 @@ export default {
       const numberCollection = [];
       const unqiuePicked = this.picked;
 
-      // console.log('numberCollection ', numberCollection)
+      console.log('numberCollection ', this.getFormattedLottoNumbers.first)
       // console.log('random ', unqiuePicked)
 
       while (numberCollection.length < 5) {
         const randomElement =
           unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
-          // console.log('random ', unqiuePicked)
-          // console.log('random ', Math.floor(Math.random() * unqiuePicked.length))
-          // console.log('random ', randomElement)
+        // console.log('random ', unqiuePicked)
+        // console.log('random ', Math.floor(Math.random() * unqiuePicked.length))
+        // console.log('random ', randomElement)
         if (numberCollection.indexOf(randomElement) === -1) {
-          numberCollection.push({ value: randomElement, id: `${randomElement}` });
+          numberCollection.push({
+            value: randomElement,
+            id: `${randomElement}`
+          });
         }
       }
       this.generatedLottoNumbers = numberCollection.sort();

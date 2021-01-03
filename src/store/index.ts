@@ -117,11 +117,29 @@ export default new Vuex.Store({
         .get('https://data.ny.gov/resource/d6yy-54nr.json')
         .then((response) => {
           const numbers = JSON.parse(JSON.stringify(response.data))
-          const first = numbers.map(
-            (number: { winning_numbers: string }) =>
-              number.winning_numbers.split(' ')[0]
-          )
-          context.commit('ADD_LOTTO_NUMBERS', { numbers, first})
+          function numPicker(position: number) {
+            return numbers.map(
+              (number: { winning_numbers: string }) =>
+                number.winning_numbers.split(' ')[position]
+            )
+          }
+
+          const first = numPicker(0)
+          const second = numPicker(1)
+          const third = numPicker(2)
+          const fourth = numPicker(3)
+          const fifth = numPicker(4)
+          const powerball = numPicker(5)
+
+          context.commit('ADD_LOTTO_NUMBERS', {
+            numbers,
+            first,
+            second,
+            third,
+            fourth,
+            fifth,
+            powerball
+          })
         })
         .catch((e) => {
           this.state.error = e
