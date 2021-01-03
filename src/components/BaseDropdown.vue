@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <b-row class="justify-content-md-center">
-      <b-col cols="12" sm="3">
+      <b-col cols="12" md="6" sm="6">
         <b-form-select
           v-model="selected"
           :options="links"
