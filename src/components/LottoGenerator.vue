@@ -3,9 +3,12 @@
     <b-row>
       <b-col cols="12" md="6" style="color: black">
         <b-button @click="generateLottoNumbers">Generate Lotto</b-button>
-        <div v-for="number in generatedLottoNumbers" :key="number.id">
-          {{ number }}
-        </div>
+        {{ generatedLottoNumbers.first }}
+        {{ generatedLottoNumbers.second }}
+        {{ generatedLottoNumbers.third }}
+        {{ generatedLottoNumbers.fourth }}
+        {{ generatedLottoNumbers.fifth }}
+        {{ generatedLottoNumbers.powerball }}
       </b-col>
       <b-col cols="12" md="6">
         <b-overlay :show="isLoading" :opacity="0.85" rounded="sm">
@@ -31,7 +34,14 @@ export default {
       sortDesc: true,
       picked: [],
       talliedPick: [],
-      generatedLottoNumbers: "",
+      generatedLottoNumbers: {
+        first: "",
+        second: "",
+        third: "",
+        fourth: "",
+        fifth: "",
+        powerball: ""
+      },
       generatedLottoFinalNumber: "",
       fields: [
         {
@@ -50,28 +60,17 @@ export default {
       }).toLocaleString(DateTime);
     },
     generateLottoNumbers() {
-      const numberCollection = [];
-      const unqiuePicked = this.picked;
+      const numberCollection = this.getFormattedLottoNumbers;
 
-      console.log('numberCollection ', this.getFormattedLottoNumbers.first)
-      // console.log('random ', unqiuePicked)
-
-      while (numberCollection.length < 5) {
+      for (const key in numberCollection) {
+        const allSelectedNumbers = numberCollection[key];
         const randomElement =
-          unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
-        // console.log('random ', unqiuePicked)
-        // console.log('random ', Math.floor(Math.random() * unqiuePicked.length))
-        // console.log('random ', randomElement)
-        if (numberCollection.indexOf(randomElement) === -1) {
-          numberCollection.push({
-            value: randomElement,
-            id: `${randomElement}`
-          });
-        }
+          allSelectedNumbers[
+            Math.floor(Math.random() * allSelectedNumbers.length)
+          ];
+
+        this.generatedLottoNumbers[key] = randomElement;
       }
-      this.generatedLottoNumbers = numberCollection.sort();
-      this.generatedLottoFinalNumber =
-        unqiuePicked[Math.floor(Math.random() * unqiuePicked.length)];
     }
   },
   created() {
