@@ -61,7 +61,7 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = this.getFormattedLottoNumbers;
-
+      
       for (const key in numberCollection) {
         const allSelectedNumbers = numberCollection[key];
         const randomElement =

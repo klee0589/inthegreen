@@ -123,6 +123,7 @@ export default new Vuex.Store({
           const fourth = numPicker(3);
           const fifth = numPicker(4);
           const powerball = numPicker(5);
+          const all = numbers.map((number: { winning_numbers: string }) => number.winning_numbers.split(" "))
 
           context.commit("ADD_LOTTO_NUMBERS", {
             numbers,
@@ -131,7 +132,8 @@ export default new Vuex.Store({
             third,
             fourth,
             fifth,
-            powerball
+            powerball,
+            all
           });
         })
         .catch(e => {
