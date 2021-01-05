@@ -3,12 +3,13 @@
     <b-row>
       <b-col cols="12" md="6" style="color: black">
         <b-button @click="generateLottoNumbers">Generate Lotto</b-button>
-        {{ generatedLottoNumbers.first }}
-        {{ generatedLottoNumbers.second }}
-        {{ generatedLottoNumbers.third }}
-        {{ generatedLottoNumbers.fourth }}
-        {{ generatedLottoNumbers.fifth }}
-        {{ generatedLottoNumbers.powerball }}
+        <b-row>
+          <b-col>
+            <ul>
+              <li v-for="number in generatedLottoNumbers" :key="number">{{number}}</li>
+            </ul>
+          </b-col>
+        </b-row>
       </b-col>
       <b-col cols="12" md="6">
         <b-overlay :show="isLoading" :opacity="0.85" rounded="sm">
@@ -34,48 +35,42 @@ export default {
       sortDesc: true,
       picked: [],
       talliedPick: [],
-      generatedLottoNumbers: {
-        first: "",
-        second: "",
-        third: "",
-        fourth: "",
-        fifth: "",
-        powerball: ""
-      },
+      generatedLottoNumbers: [],
       generatedLottoFinalNumber: "",
       fields: [
         {
           key: "number",
-          sortable: true
-        }
+          sortable: true,
+        },
       ],
-      isLoading: false
+      isLoading: false,
     };
   },
   computed: mapGetters(["getFormattedLottoNumbers"]),
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
-        zone: "America/New_York"
+        zone: "America/New_York",
       }).toLocaleString(DateTime);
     },
     generateLottoNumbers() {
-      const numberCollection = this.getFormattedLottoNumbers;
-      
+      const numberCollection = this.getFormattedLottoNumbers.lotto;
+      const generatedNumbers = [];
+
       for (const key in numberCollection) {
         const allSelectedNumbers = numberCollection[key];
         const randomElement =
           allSelectedNumbers[
             Math.floor(Math.random() * allSelectedNumbers.length)
           ];
-
-        this.generatedLottoNumbers[key] = randomElement;
+        generatedNumbers.push(randomElement);
       }
-    }
+      this.generatedLottoNumbers.push(generatedNumbers);
+    },
   },
   created() {
     this.$store.dispatch("fetchLottoNumbers");
-  }
+  },
 };
 </script>
 
