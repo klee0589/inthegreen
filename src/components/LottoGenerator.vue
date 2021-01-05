@@ -55,8 +55,7 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = this.getFormattedLottoNumbers.lotto;
-
-      setInterval(function(){
+      for (let i = 0; i < 10; i++) {
         const generatedNumbers = [];
         for (const key in numberCollection) {
           const allSelectedNumbers = numberCollection[key];
@@ -67,7 +66,7 @@ export default {
           generatedNumbers.push(randomElement);
         }
         this.generatedLottoNumbers.push(generatedNumbers);
-      }.bind(this), 3000);
+      }
     },
   },
   created() {
