@@ -55,17 +55,19 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = this.getFormattedLottoNumbers.lotto;
-      const generatedNumbers = [];
 
-      for (const key in numberCollection) {
-        const allSelectedNumbers = numberCollection[key];
-        const randomElement =
-          allSelectedNumbers[
-            Math.floor(Math.random() * allSelectedNumbers.length)
-          ];
-        generatedNumbers.push(randomElement);
-      }
-      this.generatedLottoNumbers.push(generatedNumbers);
+      setInterval(function(){
+        const generatedNumbers = [];
+        for (const key in numberCollection) {
+          const allSelectedNumbers = numberCollection[key];
+          const randomElement =
+            allSelectedNumbers[
+              Math.floor(Math.random() * allSelectedNumbers.length)
+            ];
+          generatedNumbers.push(randomElement);
+        }
+        this.generatedLottoNumbers.push(generatedNumbers);
+      }.bind(this), 3000);
     },
   },
   created() {
