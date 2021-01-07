@@ -4,9 +4,12 @@
       <b-col cols="12" md="6" style="color: black">
         <b-button @click="generateLottoNumbers">Generate Lotto</b-button>
         <b-row>
-          <b-col>
+          <b-col cols="12">
             <ul>
-              <li v-for="number in generatedLottoNumbers" :key="number">{{number}}</li>
+              <li v-for="number in generatedLottoNumbers" :key="number">
+                {{ number[0] }} | {{ number[1] }} | {{ number[2] }} |
+                {{ number[3] }} | {{ number[4] }} | POWERBALL : {{ number[5] }}
+              </li>
             </ul>
           </b-col>
         </b-row>
@@ -55,7 +58,7 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = this.getFormattedLottoNumbers.lotto;
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 100; i++) {
         const generatedNumbers = [];
         for (const key in numberCollection) {
           const allSelectedNumbers = numberCollection[key];

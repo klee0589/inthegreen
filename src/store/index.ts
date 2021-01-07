@@ -109,7 +109,7 @@ export default new Vuex.Store({
       axios
         .get("https://data.ny.gov/resource/d6yy-54nr.json")
         .then(response => {
-          const numbers = JSON.parse(JSON.stringify(response.data));          
+          const numbers = JSON.parse(JSON.stringify(response.data));
           function numPicker(position: number) {
             return numbers.map(
               (number: { winning_numbers: string }) =>
