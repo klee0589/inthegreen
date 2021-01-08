@@ -6,9 +6,13 @@
         <b-row>
           <b-col cols="12">
             <ul>
-              <li v-for="number in generatedLottoNumbers" :key="number">
-                {{ number[0] }} | {{ number[1] }} | {{ number[2] }} |
-                {{ number[3] }} | {{ number[4] }} | POWERBALL : {{ number[5] }}
+              <li v-for="(number, index) in generatedLottoNumbers" :key="index + number[0]">
+                <div>
+                  {{ index + 1 }} -
+                  {{ number[0] }} | {{ number[1] }} | {{ number[2] }} |
+                  {{ number[3] }} | {{ number[4] }} | POWERBALL :
+                  {{ number[5] }}
+                </div>
               </li>
             </ul>
           </b-col>
@@ -43,22 +47,22 @@ export default {
       fields: [
         {
           key: "number",
-          sortable: true,
-        },
+          sortable: true
+        }
       ],
-      isLoading: false,
+      isLoading: false
     };
   },
   computed: mapGetters(["getFormattedLottoNumbers"]),
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
-        zone: "America/New_York",
+        zone: "America/New_York"
       }).toLocaleString(DateTime);
     },
     generateLottoNumbers() {
       const numberCollection = this.getFormattedLottoNumbers.lotto;
-      for (let i = 0; i < 100; i++) {
+      for (let i = 1; i < 100; i++) {
         const generatedNumbers = [];
         for (const key in numberCollection) {
           const allSelectedNumbers = numberCollection[key];
@@ -70,11 +74,11 @@ export default {
         }
         this.generatedLottoNumbers.push(generatedNumbers);
       }
-    },
+    }
   },
   created() {
     this.$store.dispatch("fetchLottoNumbers");
-  },
+  }
 };
 </script>
 
