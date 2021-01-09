@@ -14,17 +14,47 @@
                   <div>{{ index + 1 }}</div>
                   --
 
-                  <div class="numCell" :style="{background: setCellColor(number[0])}">{{ number[0] }}</div>
+                  <div
+                    class="numCell"
+                    :style="{ background: setCellColor(number[0]) }"
+                  >
+                    {{ number[0] }}
+                  </div>
                   |
-                  <div class="numCell" :style="{background: setCellColor(number[1])}">{{ number[1] }}</div>
+                  <div
+                    class="numCell"
+                    :style="{ background: setCellColor(number[1]) }"
+                  >
+                    {{ number[1] }}
+                  </div>
                   |
-                  <div class="numCell" :style="{background: setCellColor(number[2])}">{{ number[2] }}</div>
+                  <div
+                    class="numCell"
+                    :style="{ background: setCellColor(number[2]) }"
+                  >
+                    {{ number[2] }}
+                  </div>
                   |
-                  <div class="numCell" :style="{background: setCellColor(number[3])}">{{ number[3] }}</div>
+                  <div
+                    class="numCell"
+                    :style="{ background: setCellColor(number[3]) }"
+                  >
+                    {{ number[3] }}
+                  </div>
                   |
-                  <div class="numCell" :style="{background: setCellColor(number[4])}">{{ number[4] }}</div>
+                  <div
+                    class="numCell"
+                    :style="{ background: setCellColor(number[4]) }"
+                  >
+                    {{ number[4] }}
+                  </div>
                   | POWERBALL :
-                  <div class="numCell" :style="{background: setCellColor(number[5])}">{{ number[5] }}</div>
+                  <div
+                    class="numCell"
+                    :style="{ background: setCellColor(number[5]) }"
+                  >
+                    {{ number[5] }}
+                  </div>
                 </div>
               </li>
             </ul>
@@ -61,21 +91,21 @@ export default {
       fields: [
         {
           key: "number",
-          sortable: true,
-        },
+          sortable: true
+        }
       ],
-      isLoading: false,
+      isLoading: false
     };
   },
   computed: mapGetters(["getFormattedLottoNumbers"]),
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
-        zone: "America/New_York",
+        zone: "America/New_York"
       }).toLocaleString(DateTime);
     },
     setCellColor(value) {
-      return LOTTO_NUM_COLORS[parseInt(value)].hex
+      return LOTTO_NUM_COLORS[parseInt(value)].hex;
     },
     generateLottoNumbers() {
       const numberCollection = this.getFormattedLottoNumbers.lotto;
@@ -91,11 +121,11 @@ export default {
         }
         this.generatedLottoNumbers.push(generatedNumbers);
       }
-    },
+    }
   },
   created() {
     this.$store.dispatch("fetchLottoNumbers");
-  },
+  }
 };
 </script>
 
