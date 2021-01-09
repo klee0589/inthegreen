@@ -6,12 +6,25 @@
         <b-row>
           <b-col cols="12">
             <ul>
-              <li v-for="(number, index) in generatedLottoNumbers" :key="index + number[0]">
-                <div>
-                  {{ index + 1 }} -
-                  {{ number[0] }} | {{ number[1] }} | {{ number[2] }} |
-                  {{ number[3] }} | {{ number[4] }} | POWERBALL :
-                  {{ number[5] }}
+              <li
+                v-for="(number, index) in generatedLottoNumbers"
+                :key="index + number[0]"
+              >
+                <div class="lottoRowContainer">
+                  <div>{{ index + 1 }}</div>
+                  --
+
+                  <div class="numCell" :style="{background: setCellColor(number[0])}">{{ number[0] }}</div>
+                  |
+                  <div class="numCell" :style="{background: setCellColor(number[1])}">{{ number[1] }}</div>
+                  |
+                  <div class="numCell" :style="{background: setCellColor(number[2])}">{{ number[2] }}</div>
+                  |
+                  <div class="numCell" :style="{background: setCellColor(number[3])}">{{ number[3] }}</div>
+                  |
+                  <div class="numCell" :style="{background: setCellColor(number[4])}">{{ number[4] }}</div>
+                  | POWERBALL :
+                  <div class="numCell" :style="{background: setCellColor(number[5])}">{{ number[5] }}</div>
                 </div>
               </li>
             </ul>
@@ -34,6 +47,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { DateTime } from "luxon";
+import { LOTTO_NUM_COLORS } from "@/palette";
 
 export default {
   data() {
@@ -47,22 +61,25 @@ export default {
       fields: [
         {
           key: "number",
-          sortable: true
-        }
+          sortable: true,
+        },
       ],
-      isLoading: false
+      isLoading: false,
     };
   },
   computed: mapGetters(["getFormattedLottoNumbers"]),
   methods: {
     formatDateAssigned(value) {
       return DateTime.fromISO(value, {
-        zone: "America/New_York"
+        zone: "America/New_York",
       }).toLocaleString(DateTime);
+    },
+    setCellColor(value) {
+      return LOTTO_NUM_COLORS[parseInt(value)].hex
     },
     generateLottoNumbers() {
       const numberCollection = this.getFormattedLottoNumbers.lotto;
-      for (let i = 1; i < 100; i++) {
+      for (let i = 1; i < 10; i++) {
         const generatedNumbers = [];
         for (const key in numberCollection) {
           const allSelectedNumbers = numberCollection[key];
@@ -74,11 +91,11 @@ export default {
         }
         this.generatedLottoNumbers.push(generatedNumbers);
       }
-    }
+    },
   },
   created() {
     this.$store.dispatch("fetchLottoNumbers");
-  }
+  },
 };
 </script>
 
@@ -88,5 +105,13 @@ export default {
   position: relative;
   height: 100vh;
   overflow-y: scroll;
+}
+.lottoRowContainer {
+  display: flex;
+  font-size: 17px;
+  justify-content: center;
+}
+.numCell {
+  color: white;
 }
 </style>
