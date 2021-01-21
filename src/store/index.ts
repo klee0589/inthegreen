@@ -107,13 +107,14 @@ export default new Vuex.Store({
     },
     fetchLottoNumbers(context) {
       axios
-        .get("https://data.ny.gov/resource/d6yy-54nr.json")
+        .get("https://data.ny.gov/resource/5xaw-6ayf.json")
         .then(response => {
           const numbers = JSON.parse(JSON.stringify(response.data));
           function numPicker(position: number) {
             return numbers.map(
-              (number: { winning_numbers: string }) =>
+              (number: { winning_numbers: string }) => {
                 number.winning_numbers.split(" ")[position]
+              }
             );
           }
 
@@ -122,7 +123,7 @@ export default new Vuex.Store({
           const third = numPicker(2);
           const fourth = numPicker(3);
           const fifth = numPicker(4);
-          const powerball = numPicker(5);
+          const powerball = numbers.map((number: { mega_ball: number; }) => number.mega_ball);
           // const all = numbers.map((number: { winning_numbers: string }) => number.winning_numbers.split(" "))
 
           context.commit("ADD_LOTTO_NUMBERS", {

@@ -109,10 +109,13 @@ export default {
     },
     generateLottoNumbers() {
       const numberCollection = this.getFormattedLottoNumbers.lotto;
+      // console.log('numberCollection ', this.getFormattedLottoNumbers.lotto)
       for (let i = 1; i < 10; i++) {
         const generatedNumbers = [];
         for (const key in numberCollection) {
           const allSelectedNumbers = numberCollection[key];
+          // console.log('allSelectedNumbers ', allSelectedNumbers)
+          // console.log('key ', key)
           const randomElement =
             allSelectedNumbers[
               Math.floor(Math.random() * allSelectedNumbers.length)
