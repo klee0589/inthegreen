@@ -10,6 +10,8 @@ Think of a PokeDex for sports gamblers. Gotta win them all
 ## [ESPN API](https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b)
 ### [ESPN API HELPER](https://www.espn.com/apis/devcenter/io-docs.html)
 
+## [OPEN DATA : CASH4LIFE](https://data.ny.gov/api/views/kwxv-fwze/rows.json?accessType=DOWNLOAD)
+
 ## Project setup
 ```
 npm install
